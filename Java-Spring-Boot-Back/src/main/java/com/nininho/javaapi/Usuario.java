@@ -1,7 +1,7 @@
 package com.nininho.javaapi;
 import java.util.Date;
 
-public class Usuario extends Pessoa {
+public class Usuario extends Moradores {
 	public Usuario(String _nome, String _cpf, Date _data) {
 		super(_nome, _cpf, _data);
 	}

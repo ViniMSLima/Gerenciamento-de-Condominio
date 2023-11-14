@@ -19,8 +19,8 @@ public class UserService {
         return this.userRepository.save(userModel);
     }
 
-    public void save(String id, String name, short age) {
-        this.userRepository.save(new UserModel(id, name, age));
+    public void save(String id, String name, String cpf, String dateOfBirth, String isAdm, String password) {
+        this.userRepository.save(new UserModel(id, name, cpf, dateOfBirth, isAdm, password));
     }
 
     public List<UserModel> findAll() {
@@ -29,10 +29,6 @@ public class UserService {
 
     public List<UserModel> findByName(String name) {
         return (List<UserModel>) this.userRepository.findByName(name);
-    }
-
-    public List<UserModel> findByAgeAndName(short age, String name) {
-        return (List<UserModel>) this.userRepository.findByAgeAndName(age, name);
     }
 
     public void delete(String id) {

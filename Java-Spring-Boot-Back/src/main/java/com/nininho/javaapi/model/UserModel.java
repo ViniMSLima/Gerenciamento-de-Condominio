@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
@@ -13,32 +15,24 @@ public class UserModel {
     @Id
     private String id;
     private String name;
-    private short age;
+    private String cpf;
     private String email;
+    private String dateOfBirth;
+    private String isAdm;
     private String password;
 
-    public UserModel(String id, String name, short age, String email) {
+    public UserModel(String id, String name, String cpf, String dateOfBirth, String isAdm, String password) {
         this.id = id;
         this.name = name;
-        this.age = age;
-        this.email = email;
+        this.cpf = cpf;
+        this.dateOfBirth = dateOfBirth;
+        this.isAdm = isAdm;
+        this.password = password;
     }
+    
+    public UserModel()
+    {
 
-    public UserModel(String id, String name, short age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
     }
-
-    public UserModel(String name, short age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public UserModel(String id) {
-        this.id = id;
-    }
-
-    public UserModel() {
-    }
+    
 }

@@ -5,7 +5,6 @@ export default class LoginInput extends React.Component {
     render() {
       return (
         <View>
-             <Text style={styles.bigText}>Login</Text>
             <Text style={styles.smallText}>User:</Text>
             <TextInput
                 style={styles.inputs} 
@@ -31,24 +30,6 @@ export default class LoginInput extends React.Component {
                 <Text>Login</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity 
-                style={[
-                    styles.TouchableOpacity, {backgroundColor: "lightgrey", color: "white"}
-                ]}
-                onPress={() => this.props.goToCadastro()}
-            >
-                <Text>Cadastro</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-                onPress={() => this.props.goToUsers()} 
-                style={[
-                    styles.TouchableOpacity, 
-                    {backgroundColor: "white", color: "black"}
-                ]}
-            >
-                <Text>Usuarios</Text>
-            </TouchableOpacity>
 
         </View>
       );
@@ -80,10 +61,6 @@ export default class LoginInput extends React.Component {
         marginTop: "5px",
         borderColor: "grey",
         borderWidth: "1px"
-    },
-    bigText: {
-        fontSize: "42px",
-        marginBottom: "50px"
     },
     TouchableOpacity: {
         width: "200px",

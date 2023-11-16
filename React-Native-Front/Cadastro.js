@@ -1,10 +1,9 @@
-import { Text, TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, Switch } from "react-native";
 import { useState, useContext } from 'react';
 import { UtilsContext } from './Context';
 import axios from 'axios';
 
 export default function Login(props) {
-    const [inicio, setInicio] = useState(false);
     const { utils, setUtils } = useContext(UtilsContext);
 
     const [nome, setNome] = useState("");
@@ -95,15 +94,12 @@ export default function Login(props) {
             ></TextInput>
 
             <Text style={styles.smallText}>Administrador</Text>
-            <TouchableOpacity
-                style={[
-                    styles.TouchableOpacity,
-                    { backgroundColor: isAdm ? 'green' : 'red', color: 'black', marginTop: "8px"  },
-                ]}
-                onPress={() => ChangeAdm()}
-            >
-                <Text>Adm</Text>
-            </TouchableOpacity>
+            <Switch style={{marginTop: "10px"}}
+                        onValueChange={() => ChangeAdm()}
+                        value={isAdm}
+                        trackColor={{false: "#767577", true: "#81b0ff"}}
+                        thumbColor={isAdm? "green":"red"}
+                />
 
             <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "white", color: "black"}]}
                 onPress={() => Cadastro()}><Text>Cadastrar</Text></TouchableOpacity>

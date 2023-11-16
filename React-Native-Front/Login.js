@@ -2,6 +2,7 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button } from "rea
 import { UtilsContext } from './Context';
 import { useState, useContext } from 'react';
 import LoginInput from './LoginInput';
+import axios from 'axios';
 
 export default function Login(props)
 {
@@ -20,19 +21,47 @@ export default function Login(props)
         props.navigation.navigate("Usuarios");
     }
 
-    function login()
+    async function login()
     {
-        {utils.data.map((item) => {
-            if(item.email == email && item.senha == senha)
+        if (email == "" || senha == "")
+        {
+            console.log("User or password cant be empty")
+        }
+        else
+        {
+            const response = await axios.get("http://localhost:8080/user/" + email, {
+            });
+
+            if(email == response.data[0].email && senha == response.data[0].password)
             {
-                props.navigation.navigate('Logado'); 
+                props.navigation.navigate("Home");
             }
-        })}
+            else
+                console.log("Incorrect password");
+            
+        }
+
+        
+            
+        
+        // props.navigation.navigate('Logado');       
+    
     }
     
     return (
         <View style={styles.container}>
-            <LoginInput setEmail={setEmail} setSenha={setSenha} goToCadastro={goToCadastro} goToUsers={goToUsers} login={login}/>
+            <text style={styles.bigText}>Condominium</text>
+            <LoginInput setEmail={setEmail} setSenha={setSenha} goToUsers={goToUsers} login={login}/>
+
+            <TouchableOpacity 
+                style={[
+                    styles.TouchableOpacity, {backgroundColor: "lightgrey", color: "white"}
+                ]}
+                onPress={() => goToCadastro()}
+            >
+                <Text>Cadastro</Text>
+            </TouchableOpacity>
+
         </View>
     )
 

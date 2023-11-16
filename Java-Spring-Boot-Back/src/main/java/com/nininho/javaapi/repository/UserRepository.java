@@ -31,7 +31,7 @@ public interface UserRepository extends MongoRepository<UserModel, String>
     // quantity: { $in: [20, 50] } } -> quantidade dentro dos valores do array 20 ou
     // 50
     
-    @Query("{'name': ?0}")
-    List<UserModel> findByName(String name);
+    @Query("{'email': ?0}")
+    List<UserModel> findByEmail(String email);
 
 }

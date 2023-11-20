@@ -38,7 +38,8 @@ export default function Login(props)
                     email: email,
                     user: response.data[0].name,
                     isAdm: response.data[0].isAdm,
-                    password: response.data[0].password
+                    password: response.data[0].password,
+                    id : response.data[0].id
                 });
                 props.navigation.navigate('Home');
             }

@@ -4,11 +4,12 @@ import { useState, useContext } from 'react';
 
 export default function Home(props) {
     const { utils, setUtils } = useContext(UtilsContext);
-    console.log(utils);
-
     function goToProfile() {
         props.navigation.navigate('Profile');
     }
+
+    console.log("<utils>");
+    console.log(utils);
 
     return (
         <View style={styles.container}>

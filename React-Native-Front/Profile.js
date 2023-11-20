@@ -13,6 +13,7 @@ export default function Profile(props) {
     const [isAdm, setIsAdm] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
+    const [id, setId] = useState("");
 
     const [newUser, setNewUser] = useState("");
     const [newEmail, setNewEmail] = useState("");
@@ -21,11 +22,12 @@ export default function Profile(props) {
     const [newDateOfBirth, setNewDateOfBirth] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [ConfirmPassword, setConfirmPassword] = useState("");
+    const [OldPassword, setOldPassword] = useState("");
 
-    
+
     async function getUserInfo() {
         const response = await axios.get("http://localhost:8080/user/" + utils.email, {});
-        
+
         setUser(response.data[0].name);
         setCpf(response.data[0].cpf);
         setEmail(response.data[0].email);
@@ -34,11 +36,28 @@ export default function Profile(props) {
         setPassword(response.data[0].password);
         setPhone(response.data[0].phone);
 
-        console.log(response.data[0]);
     }
-    
+
     async function putUserInfo() {
-        const response = await axios.put("http://localhost:8080/user/" + utils.email,
+        if (newUser == "")
+            setNewUser(user);
+
+        if (newCpf == "")
+            setNewCpf(cpf);
+
+        if (newPhone == "")
+            setNewPhone(phone);
+
+        if (newEmail == "")
+            setNewEmail(email);
+
+        if (newDateOfBirth == "")
+            setNewDateOfBirth(dateOfBirth);
+
+        if (newPassword == "")
+            setNewPassword(password);
+
+        const response = await axios.put("http://localhost:8080/user/" + utils.id,
             {
                 "name": newUser,
                 "cpf": newCpf,
@@ -47,12 +66,12 @@ export default function Profile(props) {
                 "dateOfBirth": newDateOfBirth,
                 "password": newPassword
             });
-        }
-        
+    }
+
     getUserInfo()
-        
-        return (
-            <View style={styles.container}>
+
+    return (
+        <View style={styles.container}>
 
             <Text style={styles.bigText}>Perfil</Text>
 
@@ -81,7 +100,7 @@ export default function Profile(props) {
             ></TextInput>
             <TextInput style={styles.inputs} placeholder=" Confirm new password" onChangeText={text => setConfirmPassword(text)}
             ></TextInput>
-            <TextInput style={styles.inputs} placeholder=" Old password" onChangeText={text => setNome(text)}
+            <TextInput style={styles.inputs} placeholder=" Old password" onChangeText={text => setOldPassword(text)}
             ></TextInput>
 
             <TouchableOpacity
@@ -90,7 +109,7 @@ export default function Profile(props) {
                 ]}
                 onPress={() => putUserInfo()}
             >
-                <Text>Cadastro</Text>
+                <Text>Update</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "lightgrey", color: "white" }]}

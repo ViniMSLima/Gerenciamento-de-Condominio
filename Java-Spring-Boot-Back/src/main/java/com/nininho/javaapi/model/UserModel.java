@@ -20,14 +20,16 @@ public class UserModel {
     private String dateOfBirth;
     private String isAdm;
     private String password;
+    private String phone;
 
-    public UserModel(String id, String name, String cpf, String dateOfBirth, String isAdm, String password) {
+    public UserModel(String id, String name, String cpf, String dateOfBirth, String isAdm, String password, String phone) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.dateOfBirth = dateOfBirth;
         this.isAdm = isAdm;
         this.password = password;
+        this.phone = phone;
     }
     
     public UserModel()

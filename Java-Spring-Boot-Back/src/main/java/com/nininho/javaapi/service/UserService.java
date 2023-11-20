@@ -19,8 +19,8 @@ public class UserService {
         return this.userRepository.save(userModel);
     }
 
-    public void save(String id, String name, String cpf, String dateOfBirth, String isAdm, String password) {
-        this.userRepository.save(new UserModel(id, name, cpf, dateOfBirth, isAdm, password));
+    public void save(String id, String name, String cpf, String dateOfBirth, String isAdm, String password, String phone) {
+        this.userRepository.save(new UserModel(id, name, cpf, dateOfBirth, isAdm, password, phone));
     }
 
     public List<UserModel> findAll() {

@@ -19,9 +19,9 @@ export default function App() {
       <UtilsContext.Provider value={{ utils, setUtils }}>
         <Stack.Navigator>
           <Stack.Screen name = "Login" options={{ headerShown: false, title: 'Login'}} component = { Login } />
+          <Stack.Screen name = "Cadastro" options={{ headerShown: false}} component = { Cadastro }/>
           <Stack.Screen name = "Home" options={{ headerShown: false, title: 'Home'}} component = { Home }/>
           <Stack.Screen name = "Profile" options={{ headerShown: false, title: 'Profile'}} component = { Profile } />
-          <Stack.Screen name = "Cadastro" options={{ headerShown: false}} component = { Cadastro }/>
           <Stack.Screen name = "Usuarios" component = { Usuarios }/>
         </Stack.Navigator>
       </UtilsContext.Provider>

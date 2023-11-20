@@ -40,9 +40,10 @@ public class UserController {
         userService.save(newUser);
     }
 
-    @PutMapping("/{email}")
-    public void putUser(@RequestBody UserModel newUser, @PathVariable String id, @PathVariable String name, @PathVariable String cpf, @PathVariable String dateOfBirth, @PathVariable String isAdm, @PathVariable String password) {
-        userService.save((String) id, (String) name, (String) cpf, (String) dateOfBirth, (String) isAdm, (String) password);
+    @PutMapping("/{id}")
+    public void putUser(@RequestBody UserModel newUser, @PathVariable String id) {
+        newUser.setId(id);
+        userService.save((UserModel) newUser);
     }
 
     @DeleteMapping("/{id}")

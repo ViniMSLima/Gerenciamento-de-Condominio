@@ -2,9 +2,13 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { UtilsContext } from './Context';
 import { useState, useContext } from 'react';
 
-export default function Usuarios(props) {
+export default function Home(props) {
     const { utils, setUtils } = useContext(UtilsContext);
     console.log(utils);
+
+    function goToProfile() {
+        props.navigation.navigate('Profile');
+    }
 
     return (
         <View style={styles.container}>
@@ -43,14 +47,15 @@ export default function Usuarios(props) {
                     style={[
                         styles.HomeOptions, { backgroundColor: "#87CEFA" }
                     ]}
-                    onPress={() => goToCadastro()}
+                    onPress={() => goToProfile()}
                 >
                     <Text style={styles.HomeOptinsText}>Meu perfil</Text>
                 </TouchableOpacity>
 
-
             </View>
 
+            <Text style={styles.userInfo}>User: {utils.user}</Text>
+            <Text style={styles.userInfo}>Email: {utils.email}</Text>
         </View>
     )
 }
@@ -87,9 +92,10 @@ const styles = StyleSheet.create({
         borderWidth: "1px"
     },
     bigText: {
-        fontSize: "42px",
+        fontSize: "50px",
         marginBottom: "50px",
         color: "white"
+
     },
     HomeOptions: {
         width: "150px",
@@ -108,6 +114,10 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: "18px",
         fontWeight: "bold"
+    },
+    userInfo: {
+        color: "white",
+        fontSize: "20px",
     }
 
 });

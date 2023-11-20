@@ -5,19 +5,19 @@ export default class LoginInput extends React.Component {
     render() {
       return (
         <View>
-            <Text style={styles.smallText}>User:</Text>
+            <Text style={styles.smallText}>Email</Text>
             <TextInput
                 style={styles.inputs} 
                 onChangeText={text => this.props.setEmail(text)} 
-                placeholder= " email"
+                placeholder= " user@example.com"
             ></TextInput>
 
-            <Text style={styles.smallText}>Password:</Text>
+            <Text style={styles.smallText}>Password</Text>
             <TextInput  
                 style={styles.inputs}
                 onChangeText={text => this.props.setSenha(text)} 
                 secureTextEntry = {true}
-                placeholder= " password"
+                placeholder= " your_password"
             ></TextInput>
 
             <TouchableOpacity 

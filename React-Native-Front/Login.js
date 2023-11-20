@@ -1,4 +1,4 @@
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button } from "react-native";
+import { Text, TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
 import { UtilsContext } from './Context';
 import { useState, useContext } from 'react';
 import LoginInput from './LoginInput';
@@ -34,23 +34,22 @@ export default function Login(props)
 
             if(email == response.data[0].email && senha == response.data[0].password)
             {
-                props.navigation.navigate("Home");
+                setUtils({
+                    email: email,
+                    user: response.data[0].name,
+                    isAdm: response.data[0].isAdm,
+                    password: response.data[0].password
+                });
+                props.navigation.navigate('Home');
             }
             else
                 console.log("Incorrect password");
-            
-        }
-
-        
-            
-        
-        // props.navigation.navigate('Logado');       
-    
+        }    
     }
     
     return (
         <View style={styles.container}>
-            <text style={styles.bigText}>Condominium</text>
+            <Text style={styles.bigText}>Condominium</Text>
             <LoginInput setEmail={setEmail} setSenha={setSenha} goToUsers={goToUsers} login={login}/>
 
             <TouchableOpacity 
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
         borderRadius: "10px",
         marginTop: "5px",
         borderColor: "grey",
-        borderWidth: "1px"
+        borderWidth: "0px"
     },
     bigText: {
         fontSize: "42px",

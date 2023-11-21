@@ -14,7 +14,7 @@ export default function Home(props) {
     return (
         <View style={styles.container}>
 
-            <Text style={styles.bigText}>Condominium</Text>
+            <Text style={styles.bigText}>Condomínio</Text>
 
             <View style={styles.body}>
 
@@ -55,7 +55,30 @@ export default function Home(props) {
 
             </View>
 
-            <Text style={styles.userInfo}>User: {utils.user}</Text>
+            {utils.isAdm == "true"? 
+            <View style={styles.body}>
+            <TouchableOpacity
+                style={[
+                    styles.HomeOptions, { backgroundColor: "#fc8c03" }
+                ]}
+                onPress={() => goToCadastro()}
+            >
+                <Text style={styles.HomeOptinsText}>Configuracoes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={[
+                    styles.HomeOptions, { backgroundColor: "#eded28" }
+                ]}
+                onPress={() => goToProfile()}
+            >
+                <Text style={styles.HomeOptinsText}>Meu perfil</Text>
+            </TouchableOpacity>
+
+        </View>
+        : ""}
+            
+            
+            <Text style={styles.userInfo}>User: {utils.name}</Text>
             <Text style={styles.userInfo}>Email: {utils.email}</Text>
         </View>
     )

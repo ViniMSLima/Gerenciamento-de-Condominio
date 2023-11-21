@@ -1,26 +1,20 @@
 import { Text, View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { UtilsContext } from './Context';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
 export default function Profile(props) {
     const { utils, setUtils } = useContext(UtilsContext);
 
-    const [user, setUser] = useState("");
+    const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState("");
-    const [isAdm, setIsAdm] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [id, setId] = useState("");
+    const [isAdm, setIsAdm] = useState("");
 
-    const [newUser, setNewUser] = useState("");
-    const [newEmail, setNewEmail] = useState("");
-    const [newPhone, setNewPhone] = useState("");
-    const [newCpf, setNewCpf] = useState("");
-    const [newDateOfBirth, setNewDateOfBirth] = useState("");
-    const [newPassword, setNewPassword] = useState("");
     const [ConfirmPassword, setConfirmPassword] = useState("");
     const [OldPassword, setOldPassword] = useState("");
 
@@ -28,7 +22,7 @@ export default function Profile(props) {
     async function getUserInfo() {
         const response = await axios.get("http://localhost:8080/user/" + utils.email, {});
 
-        setUser(response.data[0].name);
+        setName(response.data[0].name);
         setCpf(response.data[0].cpf);
         setEmail(response.data[0].email);
         setDateOfBirth(response.data[0].dateOfBirth);
@@ -39,36 +33,25 @@ export default function Profile(props) {
     }
 
     async function putUserInfo() {
-        if (newUser == "")
-            setNewUser(user);
-
-        if (newCpf == "")
-            setNewCpf(cpf);
-
-        if (newPhone == "")
-            setNewPhone(phone);
-
-        if (newEmail == "")
-            setNewEmail(email);
-
-        if (newDateOfBirth == "")
-            setNewDateOfBirth(dateOfBirth);
-
-        if (newPassword == "")
-            setNewPassword(password);
+        
 
         const response = await axios.put("http://localhost:8080/user/" + utils.id,
             {
-                "name": newUser,
-                "cpf": newCpf,
-                "email": newEmail,
-                "phone": newPhone,
-                "dateOfBirth": newDateOfBirth,
-                "password": newPassword
+                "name": name,
+                "cpf": cpf,
+                "email": email,
+                "phone": phone,
+                "dateOfBirth": dateOfBirth,
+                "password": password
             });
+        console.log("response put", response)
     }
 
-    getUserInfo()
+    useEffect(() => {
+        getUserInfo();
+    },[])
+
+    
 
     return (
         <View style={styles.container}>
@@ -76,32 +59,32 @@ export default function Profile(props) {
             <Text style={styles.bigText}>Perfil</Text>
 
             <Text style={styles.smallText}>User</Text>
-            <TextInput style={styles.inputs} placeholder={user} onChangeText={text => setNewUser(text)}
+            <TextInput style={styles.inputs} value={name} onChangeText={text => setName(text)}
             ></TextInput>
 
             <Text style={styles.smallText}>CPF</Text>
-            <TextInput style={styles.inputs} placeholder={cpf} onChangeText={text => setNewCpf(text)}
+            <TextInput style={styles.inputs} value={cpf} onChangeText={text => setCpf(text)}
             ></TextInput>
 
             <Text style={styles.smallText}>Email</Text>
-            <TextInput style={styles.inputs} placeholder={email} onChangeText={text => setNewEmail(text)}
+            <TextInput style={styles.inputs} value={email} onChangeText={text => setEmail(text)}
             ></TextInput>
 
             <Text style={styles.smallText}>Date of birth</Text>
-            <TextInput style={styles.inputs} placeholder={dateOfBirth} onChangeText={text => setNewDateOfBirth(text)}
+            <TextInput style={styles.inputs} value={dateOfBirth} onChangeText={text => setDateOfBirth(text)}
             ></TextInput>
 
             <Text style={styles.smallText}>Phone</Text>
-            <TextInput style={styles.inputs} placeholder={phone} onChangeText={text => setNewPhone(text)}
+            <TextInput style={styles.inputs} value={phone} onChangeText={text => setPhone(text)}
             ></TextInput>
 
-            <Text style={styles.smallText}>Change Password</Text>
-            <TextInput style={styles.inputs} placeholder=" Change password" onChangeText={text => setNewPassword(text)}
+            {/* <Text style={styles.smallText}>Change Password</Text>
+            <TextInput style={styles.inputs} value=" Change password" onChangeText={text => setNewPassword(text)}
             ></TextInput>
-            <TextInput style={styles.inputs} placeholder=" Confirm new password" onChangeText={text => setConfirmPassword(text)}
+            <TextInput style={styles.inputs} value=" Confirm new password" onChangeText={text => setConfirmPassword(text)}
             ></TextInput>
-            <TextInput style={styles.inputs} placeholder=" Old password" onChangeText={text => setOldPassword(text)}
-            ></TextInput>
+            <TextInput style={styles.inputs} value=" Old password" onChangeText={text => setOldPassword(text)}
+            ></TextInput> */}
 
             <TouchableOpacity
                 style={[

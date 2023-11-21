@@ -36,7 +36,7 @@ export default function Login(props)
             {
                 setUtils({
                     email: email,
-                    user: response.data[0].name,
+                    name: response.data[0].name,
                     isAdm: response.data[0].isAdm,
                     password: response.data[0].password,
                     id : response.data[0].id
@@ -50,7 +50,7 @@ export default function Login(props)
     
     return (
         <View style={styles.container}>
-            <Text style={styles.bigText}>Condominium</Text>
+            <Text style={styles.bigText}>Condomínio</Text>
             <LoginInput setEmail={setEmail} setSenha={setSenha} goToUsers={goToUsers} login={login}/>
 
             <TouchableOpacity 

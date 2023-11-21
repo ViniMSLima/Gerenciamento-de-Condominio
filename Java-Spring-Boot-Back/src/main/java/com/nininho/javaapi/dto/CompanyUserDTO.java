@@ -1,7 +1,7 @@
 package com.nininho.javaapi.dto;
 
 import com.nininho.javaapi.model.UserModel;
-import com.nininho.javaapi.model.CompanyModel;
+import com.nininho.javaapi.model.ApartamentoModel;
 
 import lombok.Data;
 import java.util.List;
@@ -10,6 +10,6 @@ import java.util.List;
 public class CompanyUserDTO {
     private UserModel user;
     private List<UserModel> userList;
-    private CompanyModel company;
+    private ApartamentoModel company;
 }
     

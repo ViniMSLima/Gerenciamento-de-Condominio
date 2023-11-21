@@ -6,6 +6,7 @@ import Login from './Login';
 import Cadastro from './Cadastro';
 import Usuarios from './Usuarios';
 import Home from './Home';
+import CadastroApe from './CadastroApartamentos';
 import Profile from './Profile';
 import { UtilsContext } from './Context'
 
@@ -20,6 +21,7 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name = "Login" options={{ headerShown: false, title: 'Login'}} component = { Login } />
           <Stack.Screen name = "Cadastro" options={{ headerShown: false}} component = { Cadastro }/>
+          <Stack.Screen name = "CadastroApe" options={{ headerShown: false}} component = { CadastroApe }/>
           <Stack.Screen name = "Home" options={{ headerShown: false, title: 'Home'}} component = { Home }/>
           <Stack.Screen name = "Profile" options={{ headerShown: false, title: 'Profile'}} component = { Profile } />
           <Stack.Screen name = "Usuarios" component = { Usuarios }/>

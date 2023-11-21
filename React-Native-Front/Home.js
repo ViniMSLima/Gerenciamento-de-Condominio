@@ -55,29 +55,51 @@ export default function Home(props) {
 
             </View>
 
-            {utils.isAdm == "true"? 
-            <View style={styles.body}>
-            <TouchableOpacity
-                style={[
-                    styles.HomeOptions, { backgroundColor: "#fc8c03" }
-                ]}
-                onPress={() => goToCadastro()}
-            >
-                <Text style={styles.HomeOptinsText}>Configuracoes</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={[
-                    styles.HomeOptions, { backgroundColor: "#eded28" }
-                ]}
-                onPress={() => goToProfile()}
-            >
-                <Text style={styles.HomeOptinsText}>Meu perfil</Text>
-            </TouchableOpacity>
+            {utils.isAdm == "true" ?
+            <View>
+                <View style={styles.body}>
+                    <TouchableOpacity
+                        style={[
+                            styles.HomeOptions, { backgroundColor: "#fc8c03" }
+                        ]}
+                        onPress={() => goToCadastro()}
+                    >
+                        <Text style={styles.HomeOptinsText}>Cadastro de moradoes</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[
+                            styles.HomeOptions, { backgroundColor: "#272cd6" }
+                        ]}
+                        onPress={() => goToProfile()}
+                    >
+                        <Text style={styles.HomeOptinsText}>Cadastro de funcionarios</Text>
+                    </TouchableOpacity>
 
-        </View>
-        : ""}
-            
-            
+                </View> 
+                <View style={styles.body}>
+                <TouchableOpacity
+                    style={[
+                        styles.HomeOptions, { backgroundColor: "#fc8c03" }
+                    ]}
+                    onPress={() => goToCadastro()}
+                >
+                    <Text style={styles.HomeOptinsText}>Cadastro de moradoes</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[
+                        styles.HomeOptions, { backgroundColor: "#272cd6" }
+                    ]}
+                    onPress={() => goToProfile()}
+                >
+                    <Text style={styles.HomeOptinsText}>Cadastro de funcionarios</Text>
+                </TouchableOpacity>
+
+            </View>  
+            </View>             
+                
+                : ""}
+
+
             <Text style={styles.userInfo}>User: {utils.name}</Text>
             <Text style={styles.userInfo}>Email: {utils.email}</Text>
         </View>

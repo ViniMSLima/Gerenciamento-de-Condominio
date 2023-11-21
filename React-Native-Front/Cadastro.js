@@ -17,12 +17,12 @@ export default function Login(props) {
     let arrayUtils = [];
 
     async function Cadastro() {
-        if (utils.data) {
-            arrayUtils = [...utils.data];
-        }
+        // if (utils.data) {
+        //     arrayUtils = [...utils.data];
+        // }
 
-        arrayUtils.push({ nome, dataDeNascimento, telefone, cpf, email, senha, isAdm });
-        setUtils({ ...utils, data: arrayUtils });
+        // arrayUtils.push({ nome, dataDeNascimento, telefone, cpf, email, senha, isAdm });
+        // setUtils({ ...utils, data: arrayUtils });
 
         try {
             console.log("isAdm", isAdm)

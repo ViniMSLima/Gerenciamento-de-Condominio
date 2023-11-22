@@ -1,7 +1,7 @@
 package com.nininho.javaapi;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Date;
+// import java.util.Scanner;
+// import java.util.ArrayList;
+// import java.util.Date;
 
 import org.springframework.boot.SpringApplication;
 // import org.springframework.boot.SpringApplication;

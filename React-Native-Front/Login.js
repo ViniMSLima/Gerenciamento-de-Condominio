@@ -10,11 +10,7 @@ export default function Login(props)
     const[ senha, setSenha ] = useState("");
     const{ utils, setUtils } = useContext(UtilsContext);
 
-    function goToCadastro()
-    {
-        setUtils({...utils, email: email});
-        props.navigation.navigate('Cadastro');
-    }
+    
 
     function goToUsers()
     {
@@ -53,14 +49,7 @@ export default function Login(props)
             <Text style={styles.bigText}>Condomínio</Text>
             <LoginInput setEmail={setEmail} setSenha={setSenha} goToUsers={goToUsers} login={login}/>
 
-            <TouchableOpacity 
-                style={[
-                    styles.TouchableOpacity, {backgroundColor: "lightgrey", color: "white"}
-                ]}
-                onPress={() => goToCadastro()}
-            >
-                <Text>Cadastro</Text>
-            </TouchableOpacity>
+            
 
         </View>
     )

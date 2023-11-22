@@ -11,8 +11,7 @@ export default function Login(props) {
     const [telefone, setTelefone] = useState("");
     const [cpf, setCPF] = useState("");
     const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const [isAdm, setIsAdm] = useState(false);
+    const [carteiraDeTrabalho, setCarteiraDeTrabalho] = useState("");
 
     let arrayUtils = [];
 
@@ -25,15 +24,13 @@ export default function Login(props) {
         // setUtils({ ...utils, data: arrayUtils });
 
         try {
-            console.log("isAdm", isAdm)
-            const response = await axios.post("http://localhost:8080/user", {
+            const response = await axios.post("http://localhost:8080/func", {
                 "name": nome,
                 "cpf": cpf,
                 "email": email,
                 "phone": telefone,
                 "dateOfBirth": dataDeNascimento,
-                "isAdm": isAdm.toString(),
-                "password": senha
+                "carteiraDeTrabalho": carteiraDeTrabalho,
             });
 
             console.log('Resposta da API PostUser:', response);
@@ -44,14 +41,11 @@ export default function Login(props) {
         props.navigation.navigate('Home');
     }
 
-    function ChangeAdm() {
-        setIsAdm(!isAdm);
-    }
 
     return (
         <View style={styles.container}>
 
-            <Text style={styles.bigText}>Cadastro de Moradores</Text>
+            <Text style={styles.bigText}>Cadastro de Funcionários</Text>
 
             <Text style={styles.smallText}>Nome</Text>
             <TextInput style={styles.inputs} onChangeText={text => setNome(text)}
@@ -81,27 +75,13 @@ export default function Login(props) {
                 style={styles.inputs}
             ></TextInput>
 
-            <Text style={styles.smallText}>Senha</Text>
+            <Text style={styles.smallText}>Carteira de trabalho</Text>
             <TextInput
-                onChangeText={text => setSenha(text)}
+                onChangeText={text => setCarteiraDeTrabalho(text)}
                 style={styles.inputs}
-                secureTextEntry={true}
             ></TextInput>
 
-            <Text style={styles.smallText}>Confirmar senha</Text>
-            <TextInput style={styles.inputs}
-                secureTextEntry={true}
-            ></TextInput>
-
-            <Text style={styles.smallText}>Administrador</Text>
-            <Switch style={{marginTop: "10px"}}
-                        onValueChange={() => ChangeAdm()}
-                        value={isAdm}
-                        trackColor={{false: "#767577", true: "#81b0ff"}}
-                        thumbColor={isAdm? "green":"red"}
-                />
-
-            <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "white", color: "black"}]}
+            <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "white", color: "black" }]}
                 onPress={() => Cadastro()}><Text>Cadastrar</Text></TouchableOpacity>
 
             <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "lightgrey", color: "white" }]}
@@ -109,7 +89,6 @@ export default function Login(props) {
 
         </View>
     )
-
 }
 
 const styles = StyleSheet.create({

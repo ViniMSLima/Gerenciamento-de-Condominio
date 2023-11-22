@@ -4,9 +4,27 @@ import { useState, useContext } from 'react';
 
 export default function Home(props) {
     const { utils, setUtils } = useContext(UtilsContext);
+
     function goToProfile() {
         props.navigation.navigate('Profile');
     }
+    
+    function goToCadastro()
+    {
+        // setUtils({...utils, email: email});
+        props.navigation.navigate('Cadastro');
+    }
+
+    function goToCadastroFunc()
+    {
+        // setUtils({...utils, email: email});
+        props.navigation.navigate('CadastroFunc');
+    }
+
+    function goToCadastroApe() {
+        props.navigation.navigate('CadastroApe');
+    }
+    
 
     console.log("<utils>");
     console.log(utils);
@@ -42,7 +60,7 @@ export default function Home(props) {
                     ]}
                     onPress={() => goToCadastro()}
                 >
-                    <Text style={styles.HomeOptinsText}>Configuracoes</Text>
+                    <Text style={styles.HomeOptinsText}>Configurações</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[
@@ -64,34 +82,34 @@ export default function Home(props) {
                         ]}
                         onPress={() => goToCadastro()}
                     >
-                        <Text style={styles.HomeOptinsText}>Cadastro de moradoes</Text>
+                        <Text style={styles.HomeOptinsText}>Cadastro de moradores</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[
                             styles.HomeOptions, { backgroundColor: "#272cd6" }
                         ]}
-                        onPress={() => goToProfile()}
+                        onPress={() => goToCadastroFunc()}
                     >
-                        <Text style={styles.HomeOptinsText}>Cadastro de funcionarios</Text>
+                        <Text style={styles.HomeOptinsText}>Cadastro de funcionários</Text>
                     </TouchableOpacity>
 
                 </View> 
                 <View style={styles.body}>
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#fc8c03" }
+                        styles.HomeOptions, { backgroundColor: "#d10023" }
                     ]}
-                    onPress={() => goToCadastro()}
+                    onPress={() => goToCadastroApe()}
                 >
-                    <Text style={styles.HomeOptinsText}>Cadastro de moradoes</Text>
+                    <Text style={styles.HomeOptinsText}>Cadastro de apartamentos</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#272cd6" }
+                        styles.HomeOptions, { backgroundColor: "#00d146" }
                     ]}
-                    onPress={() => goToProfile()}
+                    onPress={() => goToCadastro()}
                 >
-                    <Text style={styles.HomeOptinsText}>Cadastro de funcionarios</Text>
+                    <Text style={styles.HomeOptinsText}>Agendamento da coleta de lixo</Text>
                 </TouchableOpacity>
 
             </View>  

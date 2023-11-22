@@ -13,42 +13,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nininho.javaapi.model.ApartamentoModel;
-import com.nininho.javaapi.service.ApartamentoService;
+import com.nininho.javaapi.model.FuncionarioModel;
+import com.nininho.javaapi.service.FuncionarioService;
 
 @RestController
-@RequestMapping("/apes")
-public class ApartamentoController {
+@RequestMapping("/func")
+public class FuncionarioController {
 
     @Autowired
-    private ApartamentoService apartamentoService;
+    private FuncionarioService funcionarioService;
 
     @GetMapping("")
-    public List<ApartamentoModel> getAllUser() {
-        List<ApartamentoModel> listRes = apartamentoService.findAll();
+    public List<FuncionarioModel> getAllUser() {
+        List<FuncionarioModel> listRes = funcionarioService.findAll();
         return listRes;
     }
 
     // @GetMapping("/{email}")
-    // public List<ApartamentoModel> getUserByEmail(@PathVariable String email) {
-    //     List<ApartamentoModel> listRes = userService.findByEmail(email);
+    // public List<FuncionarioModel> getUserByEmail(@PathVariable String email) {
+    //     List<FuncionarioModel> listRes = userService.findByEmail(email);
     //     return listRes;
     // }
 
     @PostMapping("")
-    public void newUser(@RequestBody ApartamentoModel newApartamento) {
-        apartamentoService.save(newApartamento);
+    public void newUser(@RequestBody FuncionarioModel newFuncionario) {
+        funcionarioService.save(newFuncionario);
     }
 
     @PutMapping("/{numero}")
-    public void putUser(@RequestBody ApartamentoModel newApartamento, @PathVariable String numero) {
-        newApartamento.setId(numero);
-        apartamentoService.save((ApartamentoModel) newApartamento);
+    public void putUser(@RequestBody FuncionarioModel newFuncionario, @PathVariable String numero) {
+        newFuncionario.setId(numero);
+        funcionarioService.save((FuncionarioModel) newFuncionario);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable String id) {
-        apartamentoService.delete(id);
+        funcionarioService.delete(id);
     }
 
 }

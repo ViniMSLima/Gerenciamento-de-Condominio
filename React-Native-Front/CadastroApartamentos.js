@@ -21,10 +21,10 @@ export default function CadastroApe(props) {
         // setUtils({ ...utils, data: arrayUtils });
 
         try {
-            const response = await axios.post("http://localhost:8080/apartamento", {
-                "numero": nome,
-                "bloco": cpf,
-                "vagas": email
+            const response = await axios.post("http://localhost:8080/apes", {
+                "numero": numero,
+                "bloco": bloco,
+                "vagasDeEstacionamento": vagas
             });
 
             console.log('Resposta da API PostUser:', response);
@@ -32,7 +32,7 @@ export default function CadastroApe(props) {
             console.error('Erro ao enviar o user:', error);
         }
 
-        props.navigation.navigate('Usuarios');
+        props.navigation.navigate('Home');
     }
 
     return (
@@ -40,17 +40,17 @@ export default function CadastroApe(props) {
 
             <Text style={styles.bigText}>Cadastro de Apartamentos</Text>
 
-            <Text style={styles.smallText}>Numero</Text>
+            <Text style={styles.smallText}>Numero (1-500)</Text>
             <TextInput style={styles.inputs} onChangeText={text => setNumero(text)}
             ></TextInput>
 
             <View style={{ justifyContent: "space-between", display: "flex", flexDirection: "row" }}>
-                <View><Text>Bloco</Text>
-                    <TextInput onChangeText={text => setBloco(text)} style={[styles.smallInput, { marginRight: "10px" }]}
+                <View><Text>Bloco (A-Z)</Text>
+                    <TextInput onChangeText={text => setBloco(text.toUpperCase())} style={[styles.smallInput, { marginRight: "10px" }]}
                     ></TextInput>
                 </View>
                 <View>
-                    <Text>Vagas de estacionamento</Text>
+                    <Text>Qtd Vagas (1-3)</Text>
                     <TextInput onChangeText={text => setVagas(text)} style={styles.smallInput}
                     ></TextInput>
                 </View>

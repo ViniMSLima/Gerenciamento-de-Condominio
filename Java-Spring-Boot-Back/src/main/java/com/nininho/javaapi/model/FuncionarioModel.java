@@ -1,40 +1,36 @@
 package com.nininho.javaapi.model;
 
+// import java.util.List;
 import org.springframework.data.annotation.Id;
+// import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-// import lombok.Getter;
-// import lombok.Setter;
 
 @Data
-@AllArgsConstructor
-@Document("user")
-public class UserModel {
+@Document("func")
+public class FuncionarioModel {
     @Id
     private String id;
     private String name;
     private String cpf;
     private String email;
     private String dateOfBirth;
-    private String isAdm;
-    private String password;
     private String phone;
+    private String carteiraDeTrabalho;
 
-    public UserModel(String id, String name, String cpf, String dateOfBirth, String isAdm, String password, String phone) {
+    public FuncionarioModel(String id, String name, String cpf, String email, String dateOfBirth, String phone, String carteiraDeTrabalho) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.dateOfBirth = dateOfBirth;
-        this.isAdm = isAdm;
-        this.password = password;
+        this.carteiraDeTrabalho = carteiraDeTrabalho;
         this.phone = phone;
+        this.email = email;
     }
     
-    public UserModel()
+    public FuncionarioModel()
     {
 
     }
-    
 }

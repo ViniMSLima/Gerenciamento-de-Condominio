@@ -30,8 +30,8 @@ public class UserController {
     }
 
     @GetMapping("/{email}")
-    public List<UserModel> getUserByEmail(@PathVariable String email) {
-        List<UserModel> listRes = userService.findByEmail(email);
+    public UserModel getUserByEmail(@PathVariable String email) {
+        UserModel listRes = userService.findByEmail(email);
         return listRes;
     }
 

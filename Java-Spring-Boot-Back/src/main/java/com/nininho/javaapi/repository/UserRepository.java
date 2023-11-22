@@ -32,6 +32,6 @@ public interface UserRepository extends MongoRepository<UserModel, String>
     // 50
     
     @Query("{'email': ?0}")
-    List<UserModel> findByEmail(String email);
+    UserModel findByEmail(String email);
 
 }

@@ -2,10 +2,10 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity, Switch } from "rea
 import { useState, useContext } from 'react';
 import { UtilsContext } from './Context';
 import axios from 'axios';
-import { sendEmail } from './send-email';
+import qs from 'qs';
+import { Linking } from 'react-native';
 
-
-export default function CadastroApe(props) {
+export default function CadastroApeEmail(props) {
     const { utils, setUtils } = useContext(UtilsContext);
 
     const [numero, setNumero] = useState("");
@@ -36,16 +36,44 @@ export default function CadastroApe(props) {
 
         sendEmail(
             'condominiosenai@gmail.com',
-               'Can we get there?',
-            'sus',
-         { cc: 'vinisary.lima@gmail.com' }
+            'Greeting!',
+            'ENTAO TOMA ENTAO!!!!!!!!!!!!!!!!!'
         ).then(() => {
-            console.log('Your message was successfully sent!');
+            console.log('Our email successful provided to device mail ');
         });
 
         props.navigation.navigate('Home');
     }
 
+    async function sendEmail(to, subject, body, options = {}) {
+        const { cc, bcc } = options;
+    
+        let url = `mailto:${to}`;
+    
+        // Create email link query
+        const query = qs.stringify({
+            subject: subject,
+            body: body,
+            cc: cc,
+            bcc: bcc
+        });
+    
+        if (query.length) {
+            url += `?${query}`;
+        }
+    
+        // check if we can use this link
+        const canOpen = await Linking.canOpenURL(url);
+    
+        if (!canOpen) {
+            throw new Error('Provided URL can not be handled');
+        }
+    
+        return Linking.openURL(url);
+    }
+    
+
+    
     return (
         <View style={styles.container}>
 

@@ -1,4 +1,4 @@
-import { Text, TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { UtilsContext } from './Context';
 import { useState, useContext } from 'react';
 import LoginInput from './LoginInput';
@@ -22,25 +22,37 @@ export default function Login(props)
         if (email == "" || senha == "")
         {
             console.log("User or password cant be empty")
+            alert('User or password cant be empty', 'User or password cant be empty', []);
         }
         else
         {
             const response = await axios.get("http://localhost:8080/user/" + email, {
             });
 
-            if(email == response.data[0].email && senha == response.data[0].password)
+            if(response.data == "")
+            {
+                console.log("Email not found");
+                alert('Email not found', '', []);
+            }
+
+            else if(email == response.data.email && senha == response.data.password)
             {
                 setUtils({
                     email: email,
-                    name: response.data[0].name,
-                    isAdm: response.data[0].isAdm,
-                    password: response.data[0].password,
-                    id : response.data[0].id
+                    name: response.data.name,
+                    isAdm: response.data.isAdm,
+                    // password: response.data.password,
+                    id : response.data.id
                 });
                 props.navigation.navigate('Home');
             }
             else
+            {
                 console.log("Incorrect password");
+                alert('Incorrect password', '', []);
+
+            }
+
         }    
     }
     

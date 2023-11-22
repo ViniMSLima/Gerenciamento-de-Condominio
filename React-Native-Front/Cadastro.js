@@ -1,4 +1,4 @@
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, Switch } from "react-native";
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, Switch, Alert } from "react-native";
 import { useState, useContext } from 'react';
 import { UtilsContext } from './Context';
 import axios from 'axios';
@@ -12,36 +12,38 @@ export default function Login(props) {
     const [cpf, setCPF] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [confirmarSenha, setConfirmarSenha] = useState("");
     const [isAdm, setIsAdm] = useState(false);
 
     let arrayUtils = [];
 
-    async function Cadastro() {
-        // if (utils.data) {
-        //     arrayUtils = [...utils.data];
-        // }
-
-        // arrayUtils.push({ nome, dataDeNascimento, telefone, cpf, email, senha, isAdm });
-        // setUtils({ ...utils, data: arrayUtils });
-
-        try {
-            console.log("isAdm", isAdm)
-            const response = await axios.post("http://localhost:8080/user", {
-                "name": nome,
-                "cpf": cpf,
-                "email": email,
-                "phone": telefone,
-                "dateOfBirth": dataDeNascimento,
-                "isAdm": isAdm.toString(),
-                "password": senha
-            });
-
-            console.log('Resposta da API PostUser:', response);
-        } catch (error) {
-            console.error('Erro ao enviar o user:', error);
+    async function Cadastro() 
+    {
+        if(senha != confirmarSenha)
+        {
+            alert("Password and confirm password doesn't match", 'User or password cant be empty', []);
         }
-
-        props.navigation.navigate('Home');
+        else
+        {
+            try {
+                console.log("isAdm", isAdm)
+                const response = await axios.post("http://localhost:8080/user", {
+                    "name": nome,
+                    "cpf": cpf,
+                    "email": email,
+                    "phone": telefone,
+                    "dateOfBirth": dataDeNascimento,
+                    "isAdm": isAdm.toString(),
+                    "password": senha
+                });
+                
+                console.log('Resposta da API PostUser:', response);
+            } catch (error) {
+                console.error('Erro ao enviar o user:', error);
+            }
+            
+            props.navigation.navigate('Home');
+        }
     }
 
     function ChangeAdm() {
@@ -90,6 +92,7 @@ export default function Login(props) {
 
             <Text style={styles.smallText}>Confirmar senha</Text>
             <TextInput style={styles.inputs}
+                onChangeText={text => setConfirmarSenha(text)}
                 secureTextEntry={true}
             ></TextInput>
 

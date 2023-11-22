@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, Alert } from "react-native";
 import { UtilsContext } from './Context';
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
@@ -15,36 +15,46 @@ export default function Profile(props) {
     const [id, setId] = useState("");
     const [isAdm, setIsAdm] = useState("");
 
-    const [ConfirmPassword, setConfirmPassword] = useState("");
     const [OldPassword, setOldPassword] = useState("");
+    const [verifyOldPassword, setVerifyOldPassword] = useState("");
 
 
     async function getUserInfo() {
         const response = await axios.get("http://localhost:8080/user/" + utils.email, {});
 
-        setName(response.data[0].name);
-        setCpf(response.data[0].cpf);
-        setEmail(response.data[0].email);
-        setDateOfBirth(response.data[0].dateOfBirth);
-        setIsAdm(response.data[0].isAdm);
-        setPassword(response.data[0].password);
-        setPhone(response.data[0].phone);
+        setName(response.data.name);
+        setCpf(response.data.cpf);
+        setEmail(response.data.email);
+        setDateOfBirth(response.data.dateOfBirth);
+        setIsAdm(response.data.isAdm);
+        setPassword(response.data.password);
+        setVerifyOldPassword(response.data.password);
+        setPhone(response.data.phone);
 
     }
 
-    async function putUserInfo() {
+    async function putUserInfo() 
+    {
         
+        if(OldPassword != verifyOldPassword)
+        {
+            alert("old password is incorrect")
+        }
 
-        const response = await axios.put("http://localhost:8080/user/" + utils.id,
+        else
+        {            
+            const response = await axios.put("http://localhost:8080/user/" + utils.id,
             {
                 "name": name,
                 "cpf": cpf,
                 "email": email,
                 "phone": phone,
                 "dateOfBirth": dateOfBirth,
-                "password": password
+                "password": password,
+                "isAdm": isAdm
             });
-        console.log("response put", response)
+            console.log("response put", response)
+        }
     }
 
     useEffect(() => {
@@ -78,13 +88,13 @@ export default function Profile(props) {
             <TextInput style={styles.inputs} value={phone} onChangeText={text => setPhone(text)}
             ></TextInput>
 
-            {/* <Text style={styles.smallText}>Change Password</Text>
-            <TextInput style={styles.inputs} value=" Change password" onChangeText={text => setNewPassword(text)}
+            <Text style={styles.smallText}>Change Password</Text>
+            <TextInput style={styles.inputs} value={password} secureTextEntry={true} onChangeText={text => setPassword(text)}
             ></TextInput>
-            <TextInput style={styles.inputs} value=" Confirm new password" onChangeText={text => setConfirmPassword(text)}
+
+            <Text style={styles.smallText}>Old Password</Text>
+            <TextInput style={styles.inputs} value={OldPassword} secureTextEntry={true} onChangeText={text => setOldPassword(text)}
             ></TextInput>
-            <TextInput style={styles.inputs} value=" Old password" onChangeText={text => setOldPassword(text)}
-            ></TextInput> */}
 
             <TouchableOpacity
                 style={[

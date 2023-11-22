@@ -2,6 +2,8 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { UtilsContext } from './Context';
 import { useState, useContext } from 'react';
 
+
+
 export default function Home(props) {
     const { utils, setUtils } = useContext(UtilsContext);
 
@@ -24,10 +26,6 @@ export default function Home(props) {
     function goToCadastroApe() {
         props.navigation.navigate('CadastroApe');
     }
-    
-
-    console.log("<utils>");
-    console.log(utils);
 
     return (
         <View style={styles.container}>

@@ -27,8 +27,8 @@ public class UserService {
         return (List<UserModel>) this.userRepository.findAll();
     }
 
-    public List<UserModel> findByEmail(String name) {
-        return (List<UserModel>) this.userRepository.findByEmail(name);
+    public UserModel findByEmail(String name) {
+        return (UserModel) this.userRepository.findByEmail(name);
     }
 
     public void delete(String id) {

@@ -2,7 +2,6 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity, Switch } from "rea
 import { useState, useContext } from 'react';
 import { UtilsContext } from './Context';
 import axios from 'axios';
-import { sendEmail } from './send-email';
 
 
 export default function CadastroApe(props) {
@@ -12,15 +11,7 @@ export default function CadastroApe(props) {
     const [bloco, setBloco] = useState("");
     const [vagas, setVagas] = useState("");
 
-    // let arrayUtils = [];
-
     async function CadastroApe() {
-        // if (utils.data) {
-        //     arrayUtils = [...utils.data];
-        // }
-
-        // arrayUtils.push({ nome, dataDeNascimento, telefone, cpf, email, senha, isAdm });
-        // setUtils({ ...utils, data: arrayUtils });
 
         try {
             const response = await axios.post("http://localhost:8080/apes", {
@@ -33,15 +24,6 @@ export default function CadastroApe(props) {
         } catch (error) {
             console.error('Erro ao enviar o user:', error);
         }
-
-        sendEmail(
-            'condominiosenai@gmail.com',
-               'Can we get there?',
-            'sus',
-         { cc: 'vinisary.lima@gmail.com' }
-        ).then(() => {
-            console.log('Your message was successfully sent!');
-        });
 
         props.navigation.navigate('Home');
     }

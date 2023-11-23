@@ -1,8 +1,7 @@
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, Switch } from "react-native";
+import { Text, TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
 import { useState, useContext } from 'react';
 import { UtilsContext } from './Context';
 import axios from 'axios';
-import { sendEmail } from './send-email';
 import { useCopyToClipboard } from 'usehooks-ts';
 
 
@@ -13,15 +12,7 @@ export default function PagamentoCondominio(props) {
 
     const PIX = "00020126730014BR.GOV.BCB.PIX0123vinisary.lima@gmail.com0224Pagamento do condomínio 5204000053039865406400.005802BR5924VINICIUS MATHEUS SARY DE6015SAO JOSE DOS PI62140510Condominio6304D702";
 
-    // let arrayUtils = [];
-
     async function CadastroApe() {
-        // if (utils.data) {
-        //     arrayUtils = [...utils.data];
-        // }
-
-        // arrayUtils.push({ nome, dataDeNascimento, telefone, cpf, email, senha, isAdm });
-        // setUtils({ ...utils, data: arrayUtils });
 
         try {
             const response = await axios.post("http://localhost:8080/apes", {
@@ -35,15 +26,6 @@ export default function PagamentoCondominio(props) {
             console.error('Erro ao enviar o user:', error);
         }
 
-        sendEmail(
-            'condominiosenai@gmail.com',
-               'Can we get there?',
-            'sus',
-         { cc: 'vinisary.lima@gmail.com' }
-        ).then(() => {
-            console.log('Your message was successfully sent!');
-        });
-
         props.navigation.navigate('Home');
     }
 
@@ -52,17 +34,18 @@ export default function PagamentoCondominio(props) {
 
             <Text style={styles.bigText}>Pagamento do Condomínio</Text>
             <Text style={styles.smallText}>Pix copia e cola</Text>
+            <Text style={styles.smallText}>   </Text>
 
             <Text style={styles.smallText}>00020126730014BR.GOV.BCB.PIX0123vinisary.lima@gmail.com0224Pagamento do condomínio 5204000053039865406400.005802BR5924VINICIUS MATHEUS SARY DE6015SAO JOSE DOS PI62140510Condominio6304D702
-</Text>
+            </Text>
 
-            <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "white", color: "black"}]}
+            <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "lightgrey" }]}
                 onPress={() => copy(PIX)}>
-                    <Text>Copiar pix</Text>
-                </TouchableOpacity>
+                <Text>Copiar pix</Text>
+            </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "lightgrey", color: "white" }]}
-                onPress={() => props.navigation.navigate("Home")}><Text>Cancelar</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "lightgrey" }]}
+                onPress={() => props.navigation.navigate("Home")}><Text>Voltar</Text></TouchableOpacity>
 
         </View>
     )
@@ -73,7 +56,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         widht: 100,
-        backgroundColor: 'lightgrey',
+        backgroundColor: 'black',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -83,7 +66,8 @@ const styles = StyleSheet.create({
     },
     smallText: {
         alignContent: "flex-start",
-        width: "200px"
+        width: "200px",
+        color: "white"
     },
     inputs: {
         backgroundColor: "white",
@@ -103,7 +87,8 @@ const styles = StyleSheet.create({
     },
     bigText: {
         fontSize: "42px",
-        marginBottom: "50px"
+        marginBottom: "50px",
+        color: "white"
     },
     TouchableOpacity: {
         width: "200px",

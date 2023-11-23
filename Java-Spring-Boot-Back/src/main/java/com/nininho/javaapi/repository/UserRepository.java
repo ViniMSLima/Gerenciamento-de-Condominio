@@ -1,11 +1,9 @@
 package com.nininho.javaapi.repository;
 
-
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import com.nininho.javaapi.model.UserModel;
-import java.util.List;
 
 public interface UserRepository extends MongoRepository<UserModel, String>
 {

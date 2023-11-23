@@ -2,25 +2,16 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity, Switch } from "rea
 import { useState, useContext } from 'react';
 import { UtilsContext } from './Context';
 import axios from 'axios';
-import qs from 'qs';
-import { Linking } from 'react-native';
 
-export default function CadastroApeEmail(props) {
+
+export default function CadastroApe(props) {
     const { utils, setUtils } = useContext(UtilsContext);
 
     const [numero, setNumero] = useState("");
     const [bloco, setBloco] = useState("");
     const [vagas, setVagas] = useState("");
 
-    // let arrayUtils = [];
-
-    async function CadastroApe() {
-        // if (utils.data) {
-        //     arrayUtils = [...utils.data];
-        // }
-
-        // arrayUtils.push({ nome, dataDeNascimento, telefone, cpf, email, senha, isAdm });
-        // setUtils({ ...utils, data: arrayUtils });
+    async function emitirAviso() {
 
         try {
             const response = await axios.post("http://localhost:8080/apes", {
@@ -34,46 +25,9 @@ export default function CadastroApeEmail(props) {
             console.error('Erro ao enviar o user:', error);
         }
 
-        sendEmail(
-            'condominiosenai@gmail.com',
-            'Greeting!',
-            'ENTAO TOMA ENTAO!!!!!!!!!!!!!!!!!'
-        ).then(() => {
-            console.log('Our email successful provided to device mail ');
-        });
-
         props.navigation.navigate('Home');
     }
 
-    async function sendEmail(to, subject, body, options = {}) {
-        const { cc, bcc } = options;
-    
-        let url = `mailto:${to}`;
-    
-        // Create email link query
-        const query = qs.stringify({
-            subject: subject,
-            body: body,
-            cc: cc,
-            bcc: bcc
-        });
-    
-        if (query.length) {
-            url += `?${query}`;
-        }
-    
-        // check if we can use this link
-        const canOpen = await Linking.canOpenURL(url);
-    
-        if (!canOpen) {
-            throw new Error('Provided URL can not be handled');
-        }
-    
-        return Linking.openURL(url);
-    }
-    
-
-    
     return (
         <View style={styles.container}>
 

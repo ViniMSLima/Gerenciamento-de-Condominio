@@ -62,7 +62,7 @@ export default function Home(props) {
                     ]}
                     onPress={() => goToCadastro()}
                 >
-                    <Text style={styles.HomeOptinsText}>Configurações</Text>
+                    <Text style={styles.HomeOptinsText}>Central de Informações</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[

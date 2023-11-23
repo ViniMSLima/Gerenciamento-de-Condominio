@@ -27,6 +27,10 @@ export default function Home(props) {
         props.navigation.navigate('CadastroApe');
     }
 
+    function goToPagamentoCondominio() {
+        props.navigation.navigate('PagamentoCondominio');
+    }
+
     return (
         <View style={styles.container}>
 
@@ -46,7 +50,7 @@ export default function Home(props) {
                     style={[
                         styles.HomeOptions, { backgroundColor: "#DC143C" }
                     ]}
-                    onPress={() => goToCadastro()}
+                    onPress={() => goToPagamentoCondominio()}
                 >
                     <Text style={styles.HomeOptinsText}>Gerar boleto de pagamento</Text>
                 </TouchableOpacity>

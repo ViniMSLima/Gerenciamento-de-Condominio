@@ -31,6 +31,19 @@ export default function Home(props) {
         props.navigation.navigate('PagamentoCondominio');
     }
 
+    function goToAgendamentoLixo() {
+        props.navigation.navigate('AgendamentoLixo');
+    }
+
+    function goToEmitirAviso() {
+        props.navigation.navigate('EmitirAviso');
+    }
+
+    function goToAvisos() {
+        props.navigation.navigate('Avisos');
+    }
+
+    
     return (
         <View style={styles.container}>
 
@@ -60,9 +73,9 @@ export default function Home(props) {
                     style={[
                         styles.HomeOptions, { backgroundColor: "#836FFF" }
                     ]}
-                    onPress={() => goToCadastro()}
+                    onPress={() => goToAvisos()}
                 >
-                    <Text style={styles.HomeOptinsText}>Central de Informações</Text>
+                    <Text style={styles.HomeOptinsText}>Central de Avisos</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[
@@ -109,12 +122,31 @@ export default function Home(props) {
                     style={[
                         styles.HomeOptions, { backgroundColor: "#00d146" }
                     ]}
-                    onPress={() => goToCadastro()}
+                    onPress={() => goToAgendamentoLixo()}
                 >
                     <Text style={styles.HomeOptinsText}>Agendamento da coleta de lixo</Text>
                 </TouchableOpacity>
 
-            </View>  
+            </View> 
+            <View style={styles.body}>
+                    <TouchableOpacity
+                        style={[
+                            styles.HomeOptions, { backgroundColor: "#87CEFA" }
+                        ]}
+                        onPress={() => goToEmitirAviso()}
+                    >
+                        <Text style={styles.HomeOptinsText}>Emitir aviso</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[
+                            styles.HomeOptions, { backgroundColor: "#836FFF" }
+                        ]}
+                        onPress={() => goToCadastroFunc()}
+                    >
+                        <Text style={styles.HomeOptinsText}>...</Text>
+                    </TouchableOpacity>
+
+                </View>  
             </View>             
                 
                 : ""}

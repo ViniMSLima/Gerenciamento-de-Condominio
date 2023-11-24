@@ -4,10 +4,12 @@ import { UtilsContext } from './Context';
 import axios from 'axios';
 
 
-export default function AgendamentoLixo(props) {
+export default function EmitirAviso(props) {
     const { utils, setUtils } = useContext(UtilsContext);
     const [data, setData] = useState("");
     const [horario, setHorario] = useState("");
+    const [aviso, setAviso] = useState("");
+    const [informacoes, setInformacoes] = useState("");
 
     const dataAtual = new Date();
     const opcoesFormatacao = { day: 'numeric', month: '2-digit', year: 'numeric' };
@@ -17,9 +19,9 @@ export default function AgendamentoLixo(props) {
 
         try {
             const response = await axios.post("http://localhost:8080/info", {
-                "aviso": "Agendamento de lixo",
+                "aviso": aviso,
                 "data": data,
-                "informacoes": "Nova data de coleta de lixo",
+                "informacoes": informacoes,
                 "dataAviso": dataFormatada.toString(),
                 "horario": horario
             });
@@ -35,9 +37,17 @@ export default function AgendamentoLixo(props) {
     return (
         <View style={styles.container}>
 
-            <Text style={styles.bigText}>Agendamento do lixo</Text>
+            <Text style={styles.bigText}>Emitir avisos do condomínio</Text>
 
-            <Text style={styles.smallText}>Nova data da coleta</Text>
+            <Text style={styles.smallText}>Aviso</Text>
+            <TextInput style={styles.inputs} onChangeText={text => setAviso(text)}
+            ></TextInput>
+
+            <Text style={styles.smallText}>Descrição</Text>
+            <TextInput style={styles.inputs} onChangeText={text => setInformacoes(text)}
+            ></TextInput>
+
+            <Text style={styles.smallText}>Data</Text>
             <TextInput style={styles.inputs} onChangeText={text => setData(text)}
             ></TextInput>
 

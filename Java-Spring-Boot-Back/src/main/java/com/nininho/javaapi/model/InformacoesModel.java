@@ -13,6 +13,8 @@ public class InformacoesModel {
     private String id;
     private String aviso;
     private String data;
+    private String horario;
+    private String dataAviso;
     private String informacoes;
     
 public InformacoesModel() {}

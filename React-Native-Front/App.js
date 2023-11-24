@@ -9,6 +9,9 @@ import Home from './Home';
 import CadastroApe from './CadastroApartamentos';
 import CadastroFunc from './CadastroFuncionarios';
 import PagamentoCondominio from './pagamentoCondominio';
+import AgendamentoLixo from './AgendamentoLixo';
+import EmitirAviso from './EmitirAvisos';
+import Avisos from './Avisos';
 import Profile from './Profile';
 import { UtilsContext } from './Context'
 
@@ -25,7 +28,10 @@ export default function App() {
           <Stack.Screen name = "Cadastro" options={{ headerShown: false}} component = { Cadastro }/>
           <Stack.Screen name = "CadastroApe" options={{ headerShown: false}} component = { CadastroApe }/>
           <Stack.Screen name = "PagamentoCondominio" options={{ headerShown: false}} component = { PagamentoCondominio }/>
+          <Stack.Screen name = "AgendamentoLixo" options={{ headerShown: false}} component = { AgendamentoLixo }/>
           <Stack.Screen name = "CadastroFunc" options={{ headerShown: false}} component = { CadastroFunc }/>
+          <Stack.Screen name = "EmitirAviso" options={{ headerShown: false}} component = { EmitirAviso }/>
+          <Stack.Screen name = "Avisos" options={{ headerShown: false}} component = { Avisos }/>
           <Stack.Screen name = "Home" options={{ headerShown: false, title: 'Home'}} component = { Home }/>
           <Stack.Screen name = "Profile" options={{ headerShown: false, title: 'Profile'}} component = { Profile } />
           <Stack.Screen name = "Usuarios" component = { Usuarios }/>

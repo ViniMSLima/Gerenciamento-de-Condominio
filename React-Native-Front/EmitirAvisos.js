@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     inputs: {
         backgroundColor: "white",
-        width: "200px",
+        width: "300px",
         marginBottom: "20px",
         height: "30px",
         borderRadius: "10px",
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         marginBottom: "50px"
     },
     TouchableOpacity: {
-        width: "200px",
+        width: "300px",
         height: "30px",
         justifyContent: "center",
         alignItems: "center",

@@ -61,8 +61,6 @@ export default function Login(props)
             <Text style={styles.bigText}>Condomínio</Text>
             <LoginInput setEmail={setEmail} setSenha={setSenha} goToUsers={goToUsers} login={login}/>
 
-            
-
         </View>
     )
 
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       widht: 100,
-      backgroundColor: 'lightgrey',
+      backgroundColor: 'lightblue',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -89,7 +87,7 @@ const styles = StyleSheet.create({
         width: "200px",
         marginBottom: "20px",
         height: "30px",
-        borderRadius: "10px",
+        borderRadius: "100px",
         marginTop: "5px",
         borderColor: "grey",
         borderWidth: "0px"

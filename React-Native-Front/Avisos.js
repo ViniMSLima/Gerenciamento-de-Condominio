@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { UtilsContext } from './Context';
 import { useState, useContext, useCallback } from 'react';
 import axios from 'axios';
@@ -31,6 +31,9 @@ export default function Avisos(props) {
 
             <Text style={styles.bigText}>Avisos</Text>
 
+            <TouchableOpacity style={styles.TouchableOpacity}
+                onPress={() => props.navigation.navigate("Home")}><Text>Voltar</Text></TouchableOpacity>
+
             <FlatList
                 data={avisos}
                 renderItem={
@@ -46,6 +49,8 @@ export default function Avisos(props) {
                 keyExtractor={(item) => item.id}
             >
             </FlatList>
+
+            
 
         </View>
     )
@@ -88,7 +93,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: "10px",
         fontFamily: "Arial",
-        marginTop: "30px"
+        marginTop: "30px",
+        backgroundColor: "white",
+        marginBottom: "20px"
     },
     Info: {
         marginBottom: "5px", 

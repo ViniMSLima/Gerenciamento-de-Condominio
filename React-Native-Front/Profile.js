@@ -130,12 +130,12 @@ const styles = StyleSheet.create({
     },
     smallText: {
         alignContent: "flex-start",
-        width: "200px",
+        width: "300px",
         color: "white"
     },
     inputs: {
         backgroundColor: "white",
-        width: "200px",
+        width: "300px",
         marginBottom: "20px",
         height: "30px",
         borderRadius: "10px",
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
         fontSize: "20px",
     },
     TouchableOpacity: {
-        width: "200px",
+        width: "300px",
         height: "30px",
         justifyContent: "center",
         alignItems: "center",

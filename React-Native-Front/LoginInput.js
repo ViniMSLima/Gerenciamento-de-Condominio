@@ -54,16 +54,17 @@ export default class LoginInput extends React.Component {
     },
     inputs: {
         backgroundColor: "white",
-        width: "200px",
+        width: "300px",
         marginBottom: "20px",
         height: "30px",
-        borderRadius: "10px",
+        borderRadius: "100px",
         marginTop: "5px",
         borderColor: "grey",
-        borderWidth: "1px"
+        borderWidth: "1px",
+        border: "none"
     },
     TouchableOpacity: {
-        width: "200px",
+        width: "300px",
         height: "30px",
         justifyContent: "center",
         alignItems: "center",

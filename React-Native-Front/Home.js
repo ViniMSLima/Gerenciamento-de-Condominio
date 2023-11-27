@@ -43,6 +43,10 @@ export default function Home(props) {
         props.navigation.navigate('Avisos');
     }
 
+    function goToCadastrados() {
+        props.navigation.navigate('Cadastrados');
+    }
+
     
     return (
         <View style={styles.container}>
@@ -141,9 +145,9 @@ export default function Home(props) {
                         style={[
                             styles.HomeOptions, { backgroundColor: "#836FFF" }
                         ]}
-                        onPress={() => goToCadastroFunc()}
+                        onPress={() => goToCadastrados()}
                     >
-                        <Text style={styles.HomeOptinsText}>...</Text>
+                        <Text style={styles.HomeOptinsText}>Cadastrados</Text>
                     </TouchableOpacity>
 
                 </View>  
@@ -215,7 +219,7 @@ const styles = StyleSheet.create({
     },
     userInfo: {
         color: "white",
-        fontSize: "20px",
+        fontSize: "20px"
     }
 
 });

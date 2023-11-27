@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
     },
     smallText: {
         alignContent: "flex-start",
-        width: "200px"
+        width: "300px"
     },
     inputs: {
         backgroundColor: "white",
-        width: "200px",
+        width: "300px",
         marginBottom: "20px",
         height: "30px",
         borderRadius: "10px",
@@ -141,18 +141,18 @@ const styles = StyleSheet.create({
     },
     smallInput: {
         backgroundColor: "white",
-        width: "95px",
+        width: "145px",
         marginBottom: "20px",
         height: "30px",
         borderRadius: "10px",
         marginTop: "5px"
     },
     bigText: {
-        fontSize: "42px",
+        fontSize: "35px",
         marginBottom: "50px"
     },
     TouchableOpacity: {
-        width: "200px",
+        width: "300px",
         height: "30px",
         justifyContent: "center",
         alignItems: "center",

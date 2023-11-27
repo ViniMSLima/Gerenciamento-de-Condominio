@@ -47,6 +47,9 @@ export default function Home(props) {
         props.navigation.navigate('Cadastrados');
     }
 
+    function goToChurras() {
+        props.navigation.navigate('Churras');
+    }
     
     return (
         <View style={styles.container}>
@@ -57,15 +60,15 @@ export default function Home(props) {
 
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#40E0D0" }
+                        styles.HomeOptions, { backgroundColor: "#041870" }
                     ]}
-                    onPress={() => goToCadastro()}
+                    onPress={() => goToChurras()}
                 >
                     <Text style={styles.HomeOptinsText}>Aluguel de churrasqueira</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#DC143C" }
+                        styles.HomeOptions, { backgroundColor: "#0ad1c1" }
                     ]}
                     onPress={() => goToPagamentoCondominio()}
                 >
@@ -75,7 +78,7 @@ export default function Home(props) {
             <View style={styles.body}>
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#836FFF" }
+                        styles.HomeOptions, { backgroundColor: "#d41d08" }
                     ]}
                     onPress={() => goToAvisos()}
                 >
@@ -83,7 +86,7 @@ export default function Home(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#87CEFA" }
+                        styles.HomeOptions, { backgroundColor: "#e68217" }
                     ]}
                     onPress={() => goToProfile()}
                 >
@@ -97,7 +100,7 @@ export default function Home(props) {
                 <View style={styles.body}>
                     <TouchableOpacity
                         style={[
-                            styles.HomeOptions, { backgroundColor: "#fc8c03" }
+                            styles.HomeOptions, { backgroundColor: "#1b5e07" }
                         ]}
                         onPress={() => goToCadastro()}
                     >
@@ -105,7 +108,7 @@ export default function Home(props) {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[
-                            styles.HomeOptions, { backgroundColor: "#272cd6" }
+                            styles.HomeOptions, { backgroundColor: "#14a7cc" }
                         ]}
                         onPress={() => goToCadastroFunc()}
                     >
@@ -116,7 +119,7 @@ export default function Home(props) {
                 <View style={styles.body}>
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#d10023" }
+                        styles.HomeOptions, { backgroundColor: "#0396ff" }
                     ]}
                     onPress={() => goToCadastroApe()}
                 >
@@ -124,7 +127,7 @@ export default function Home(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#00d146" }
+                        styles.HomeOptions, { backgroundColor: "#4d587d" }
                     ]}
                     onPress={() => goToAgendamentoLixo()}
                 >
@@ -135,7 +138,7 @@ export default function Home(props) {
             <View style={styles.body}>
                     <TouchableOpacity
                         style={[
-                            styles.HomeOptions, { backgroundColor: "#87CEFA" }
+                            styles.HomeOptions, { backgroundColor: "#8a1a30" }
                         ]}
                         onPress={() => goToEmitirAviso()}
                     >
@@ -143,7 +146,7 @@ export default function Home(props) {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[
-                            styles.HomeOptions, { backgroundColor: "#836FFF" }
+                            styles.HomeOptions, { backgroundColor: "#b0b0b0" }
                         ]}
                         onPress={() => goToCadastrados()}
                     >

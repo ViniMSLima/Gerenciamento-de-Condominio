@@ -43,6 +43,44 @@ export default function Cadastrados(props) {
         }
     }
 
+    async function deleteFromLista(a, id) {
+
+        setNum(a);
+
+        switch (a) {
+            case 0:
+                try {
+                    const response = await axios.delete("http://localhost:8080/user/" + id, {
+                    });
+                    setAvisos(response.data)
+                    getLista(a)
+                } catch (error) {
+                    console.error('Erro ao enviar o user:', error);
+                }
+                break;
+            case 1:
+                try {
+                    const response = await axios.delete("http://localhost:8080/apes/" + id, {
+                    });
+                    setAvisos(response.data)
+                    getLista(a)
+                } catch (error) {
+                    console.error('Erro ao enviar o user:', error);
+                }
+                break;
+            case 2:
+                try {
+                    const response = await axios.delete("http://localhost:8080/func/" + id, {
+                    });
+                    setAvisos(response.data)
+                    getLista(a)
+                } catch (error) {
+                    console.error('Erro ao enviar o user:', error);
+                }
+                break;
+        }
+    }
+
 
     return (
         <View style={styles.container}>
@@ -74,6 +112,8 @@ export default function Cadastrados(props) {
                                 <Text style={styles.Info}>data de nascimento: {item.dateOfBirth}</Text>
                                 <Text style={styles.Info}>telefone: {item.phone}</Text>
                                 <Text style={styles.Info}>Adm: {item.isAdm}</Text>
+                                <TouchableOpacity style={styles.TouchableOpacity3}
+                                    onPress={() => deleteFromLista(0, item.id)}>Excluir</TouchableOpacity>
                             </View>
                     }
                     keyExtractor={(item) => item.id}
@@ -90,6 +130,8 @@ export default function Cadastrados(props) {
                                 <Text style={styles.Aviso}>Numero: {item.numero} </Text>
                                 <Text style={styles.Info}>Vagas de estacionamento: {item.vagasDeEstacionamento}</Text>
                                 <Text style={styles.Info}>Bloco: {item.bloco}</Text>
+                                <TouchableOpacity style={styles.TouchableOpacity3}
+                                    onPress={() => deleteFromLista(1, item.id)}>Excluir</TouchableOpacity>
                             </View>
                     }
                     keyExtractor={(item) => item.id}
@@ -109,6 +151,8 @@ export default function Cadastrados(props) {
                                 <Text style={styles.Info}>data de nascimento: {item.dateOfBirth}</Text>
                                 <Text style={styles.Info}>telefone: {item.phone}</Text>
                                 <Text style={styles.Info}>Carteira de trabalho: {item.carteiraDeTrabalho}</Text>
+                                <TouchableOpacity style={styles.TouchableOpacity3}
+                                    onPress={() => deleteFromLista(2, item.id)}>Excluir</TouchableOpacity>
                             </View>
                     }
                     keyExtractor={(item) => item.id}
@@ -175,6 +219,19 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         marginBottom: "20px"
     },
+    TouchableOpacity3: {
+        width: "100px",
+        height: "30px",
+        margin: "10px",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "10px",
+        fontFamily: "Arial",
+        marginTop: "30px",
+        backgroundColor: "red",
+        marginBottom: "20px",
+        color: "85292e"
+    },
     Info: {
         marginBottom: "5px",
         marginLeft: "5px"
@@ -184,9 +241,9 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: "5px",
         marginLeft: "5px"
-    }, 
+    },
     buttons: {
         display: "flex",
-        flexDirection: "row" 
+        flexDirection: "row"
     }
 });

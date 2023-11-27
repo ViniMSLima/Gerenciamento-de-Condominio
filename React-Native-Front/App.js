@@ -13,6 +13,7 @@ import AgendamentoLixo from './AgendamentoLixo';
 import EmitirAviso from './EmitirAvisos';
 import Avisos from './Avisos';
 import Cadastrados from './Cadastrados';
+import Churras from './AluguelChurras';
 import Profile from './Profile';
 import { UtilsContext } from './Context'
 
@@ -34,6 +35,7 @@ export default function App() {
           <Stack.Screen name = "EmitirAviso" options={{ headerShown: false}} component = { EmitirAviso }/>
           <Stack.Screen name = "Avisos" options={{ headerShown: false}} component = { Avisos }/>
           <Stack.Screen name = "Cadastrados" options={{ headerShown: false}} component = { Cadastrados }/>
+          <Stack.Screen name = "Churras" options={{ headerShown: false}} component = { Churras }/>
           <Stack.Screen name = "Home" options={{ headerShown: false, title: 'Home'}} component = { Home }/>
           <Stack.Screen name = "Profile" options={{ headerShown: false, title: 'Profile'}} component = { Profile } />
           <Stack.Screen name = "Usuarios" component = { Usuarios }/>

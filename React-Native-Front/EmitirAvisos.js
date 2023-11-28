@@ -37,7 +37,7 @@ export default function EmitirAviso(props) {
     return (
         <View style={styles.container}>
 
-            <Text style={styles.bigText}>Emitir avisos do condomínio</Text>
+            <Text style={styles.bigText}>Emitir aviso</Text>
 
             <Text style={styles.smallText}>Aviso</Text>
             <TextInput style={styles.inputs} onChangeText={text => setAviso(text)}
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     },
     smallText: {
         alignContent: "flex-start",
-        width: "200px"
+        width: "300px"
     },
     inputs: {
         backgroundColor: "white",

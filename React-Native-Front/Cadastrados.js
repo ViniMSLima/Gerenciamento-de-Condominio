@@ -19,7 +19,7 @@ export default function Cadastrados(props) {
                     });
                     setAvisos(response.data)
                 } catch (error) {
-                    console.error('Erro ao enviar o user:', error);
+                    console.error('Erro ao solicitar a lista:', error);
                 }
                 break;
             case 1:
@@ -28,7 +28,7 @@ export default function Cadastrados(props) {
                     });
                     setAvisos(response.data)
                 } catch (error) {
-                    console.error('Erro ao enviar o user:', error);
+                    console.error('Erro ao solicitar a lista:', error);
                 }
                 break;
             case 2:
@@ -37,7 +37,7 @@ export default function Cadastrados(props) {
                     });
                     setAvisos(response.data)
                 } catch (error) {
-                    console.error('Erro ao enviar o user:', error);
+                    console.error('Erro ao solicitar a lista:', error);
                 }
                 break;
         }
@@ -55,7 +55,7 @@ export default function Cadastrados(props) {
                     setAvisos(response.data)
                     getLista(a)
                 } catch (error) {
-                    console.error('Erro ao enviar o user:', error);
+                    console.error('Erro ao deletar: ', error);
                 }
                 break;
             case 1:
@@ -65,7 +65,7 @@ export default function Cadastrados(props) {
                     setAvisos(response.data)
                     getLista(a)
                 } catch (error) {
-                    console.error('Erro ao enviar o user:', error);
+                    console.error('Erro ao deletar: ', error);
                 }
                 break;
             case 2:
@@ -75,7 +75,7 @@ export default function Cadastrados(props) {
                     setAvisos(response.data)
                     getLista(a)
                 } catch (error) {
-                    console.error('Erro ao enviar o user:', error);
+                    console.error('Erro ao deletar: ', error);
                 }
                 break;
         }
@@ -113,7 +113,7 @@ export default function Cadastrados(props) {
                                 <Text style={styles.Info}>telefone: {item.phone}</Text>
                                 <Text style={styles.Info}>Adm: {item.isAdm}</Text>
                                 <TouchableOpacity style={styles.TouchableOpacity3}
-                                    onPress={() => deleteFromLista(0, item.id)}>Excluir</TouchableOpacity>
+                                    onPress={() => deleteFromLista(0, item.id)}><Text>Excluir</Text></TouchableOpacity>
                             </View>
                     }
                     keyExtractor={(item) => item.id}
@@ -131,7 +131,7 @@ export default function Cadastrados(props) {
                                 <Text style={styles.Info}>Vagas de estacionamento: {item.vagasDeEstacionamento}</Text>
                                 <Text style={styles.Info}>Bloco: {item.bloco}</Text>
                                 <TouchableOpacity style={styles.TouchableOpacity3}
-                                    onPress={() => deleteFromLista(1, item.id)}>Excluir</TouchableOpacity>
+                                    onPress={() => deleteFromLista(1, item.id)}><Text>Excluir</Text></TouchableOpacity>
                             </View>
                     }
                     keyExtractor={(item) => item.id}
@@ -152,7 +152,7 @@ export default function Cadastrados(props) {
                                 <Text style={styles.Info}>telefone: {item.phone}</Text>
                                 <Text style={styles.Info}>Carteira de trabalho: {item.carteiraDeTrabalho}</Text>
                                 <TouchableOpacity style={styles.TouchableOpacity3}
-                                    onPress={() => deleteFromLista(2, item.id)}>Excluir</TouchableOpacity>
+                                    onPress={() => deleteFromLista(2, item.id)}><Text>Excluir</Text></TouchableOpacity>
                             </View>
                     }
                     keyExtractor={(item) => item.id}

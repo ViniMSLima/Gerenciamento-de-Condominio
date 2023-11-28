@@ -11,6 +11,29 @@ export default function CadastroApe(props) {
     const [bloco, setBloco] = useState("");
     const [vagas, setVagas] = useState("");
 
+    const dataAtual = new Date();
+    const opcoesFormatacao = { day: 'numeric', month: '2-digit', year: 'numeric' };
+    const dataFormatada = dataAtual.toLocaleDateString('pt-BR', opcoesFormatacao);
+
+    async function emitirAviso() {
+
+        try {
+            const response = await axios.post("http://localhost:8080/info", {
+                "aviso": "Novo Apartamento",
+                "data": dataFormatada.toString(),
+                "informacoes": "Novo Apartamento: " + numero,
+                "dataAviso": dataFormatada.toString(),
+                "horario": "00:00"
+            });
+
+            console.log('Resposta da API PostUser:', response);
+        } catch (error) {
+            console.error('Erro ao enviar o user:', error);
+        }
+
+        props.navigation.navigate('Home');
+    }
+
     async function CadastroApe() {
 
         try {
@@ -24,7 +47,7 @@ export default function CadastroApe(props) {
         } catch (error) {
             console.error('Erro ao enviar o user:', error);
         }
-
+        emitirAviso();
         props.navigation.navigate('Home');
     }
 
@@ -86,14 +109,14 @@ const styles = StyleSheet.create({
     },
     smallInput: {
         backgroundColor: "white",
-        width: "95px",
+        width: "145px",
         marginBottom: "20px",
         height: "30px",
         borderRadius: "10px",
         marginTop: "5px"
     },
     bigText: {
-        fontSize: "42px",
+        fontSize: "32px",
         marginBottom: "50px"
     },
     TouchableOpacity: {

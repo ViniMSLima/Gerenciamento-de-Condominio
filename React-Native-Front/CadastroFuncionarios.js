@@ -13,7 +13,28 @@ export default function Login(props) {
     const [email, setEmail] = useState("");
     const [carteiraDeTrabalho, setCarteiraDeTrabalho] = useState("");
 
-    let arrayUtils = [];
+    const dataAtual = new Date();
+    const opcoesFormatacao = { day: 'numeric', month: '2-digit', year: 'numeric' };
+    const dataFormatada = dataAtual.toLocaleDateString('pt-BR', opcoesFormatacao);
+
+    async function emitirAviso() {
+
+        try {
+            const response = await axios.post("http://localhost:8080/info", {
+                "aviso": "Novo Funcionário",
+                "data": dataFormatada.toString(),
+                "informacoes": "Novo Funcionário: " + nome,
+                "dataAviso": dataFormatada.toString(),
+                "horario": "00:00"
+            });
+
+            console.log('Resposta da API PostUser:', response);
+        } catch (error) {
+            console.error('Erro ao enviar o user:', error);
+        }
+
+        props.navigation.navigate('Home');
+    }
 
     async function Cadastro() {
         // if (utils.data) {
@@ -37,7 +58,7 @@ export default function Login(props) {
         } catch (error) {
             console.error('Erro ao enviar o user:', error);
         }
-
+        emitirAviso();
         props.navigation.navigate('Home');
     }
 
@@ -117,7 +138,7 @@ const styles = StyleSheet.create({
     },
     smallInput: {
         backgroundColor: "white",
-        width: "95px",
+        width: "145px",
         marginBottom: "20px",
         height: "30px",
         borderRadius: "10px",

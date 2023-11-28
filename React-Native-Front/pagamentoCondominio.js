@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         marginTop: "5px"
     },
     bigText: {
-        fontSize: "42px",
+        fontSize: "32px",
         marginBottom: "50px",
         color: "white"
     },

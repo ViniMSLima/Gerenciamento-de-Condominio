@@ -12,6 +12,29 @@ export default function AluguelChurras(props) {
     const [lista, setLista] = useState([]);
     const [numero, setNumero] = useState("");
 
+    const dataAtual = new Date();
+    const opcoesFormatacao = { day: 'numeric', month: '2-digit', year: 'numeric' };
+    const dataFormatada = dataAtual.toLocaleDateString('pt-BR', opcoesFormatacao);
+
+    async function emitirAviso() {
+
+        try {
+            const response = await axios.post("http://localhost:8080/info", {
+                "aviso": "Aluguel Churrasqueira: " + numero,
+                "data": data,
+                "informacoes": "Alugada no email: " + email,
+                "dataAviso": dataFormatada.toString(),
+                "horario": "00:00"
+            });
+
+            console.log('Resposta da API PostUser:', response);
+        } catch (error) {
+            console.error('Erro ao enviar o user:', error);
+        }
+
+        props.navigation.navigate('Home');
+    }
+
     async function Churras() {
 
         try {
@@ -25,7 +48,7 @@ export default function AluguelChurras(props) {
         } catch (error) {
             console.error('Erro ao enviar o user:', error);
         }
-
+        emitirAviso();
         props.navigation.navigate('Home');
     }
 
@@ -82,7 +105,7 @@ export default function AluguelChurras(props) {
                                 <Text style={styles.Info}>data: {item.data}</Text>
                                 <Text style={styles.Info}>email: {item.email}</Text>
                                 <TouchableOpacity style={styles.TouchableOpacity3}
-                                    onPress={() => deleteFromLista(0, item.id)}>Excluir</TouchableOpacity>
+                                    onPress={() => deleteFromLista(0, item.id)}><Text>Excluir</Text></TouchableOpacity>
                             </View>
                     }
                     keyExtractor={(item) => item.id}

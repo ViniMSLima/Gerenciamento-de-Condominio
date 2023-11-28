@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         marginTop: "5px"
     },
     bigText: {
-        fontSize: "42px",
+        fontSize: "40px",
         marginBottom: "50px"
     },
     TouchableOpacity: {

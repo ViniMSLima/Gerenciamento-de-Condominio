@@ -6,54 +6,73 @@ import { useFocusEffect } from '@react-navigation/native';
 
 export default function Avisos(props) {
     const { utils, setUtils } = useContext(UtilsContext);
-    const [avisos,setAvisos] = useState([])
-    
+    const [avisos, setAvisos] = useState([])
+
     async function getAvisos() {
-        
+
         try {
             const response = await axios.get("http://localhost:8080/info", {
             });
             console.log('Resposta da API PostUser:', response.data);
-            setAvisos(response.data)
+            response.data.reverse();
+            setAvisos(response.data);
         } catch (error) {
-            console.error('Erro ao enviar o user:', error);
+            console.error('Erro ao puxar os avisos: ', error);
         }
     }
-    
-    useFocusEffect(
-        useCallback(() => {
+
+    async function deleteFromLista(id) {
+
+        try {
+            const response = await axios.delete("http://localhost:8080/info/" + id, {
+            });
             getAvisos();
-        }, [])
-    );
-    
-    return (
-        <View style={styles.container}>
+        } catch (error) {
+            console.error('Erro ao deletar o aviso: ', error);
+        }
+    }
 
-            <Text style={styles.bigText}>Avisos</Text>
 
-            <TouchableOpacity style={styles.TouchableOpacity}
-                onPress={() => props.navigation.navigate("Home")}><Text>Voltar</Text></TouchableOpacity>
 
-            <FlatList
-                data={avisos}
-                renderItem={
-                    ({ item }) =>
-                    <View style={{ backgroundColor: "white" ,width: "300px", borderRadius: "10px", border: "none", marginBottom: "10px" }}>
-                    <Text style={styles.Aviso}>Aviso: {item.aviso} </Text>
-                    <Text style={styles.Info}>Horario: {item.horario}</Text>
-                    <Text style={styles.Info}>Informações: {item.informacoes}</Text>
-                    <Text style={styles.Info}>data: {item.data}</Text>
-                    <Text style={styles.Info}>data de emissão do aviso: {item.dataAviso}</Text>
-                </View>
-                }
-                keyExtractor={(item) => item.id}
-            >
-            </FlatList>
+useFocusEffect(
+    useCallback(() => {
+        getAvisos();
+    }, [])
+);
 
-            
+return (
+    <View style={styles.container}>
 
-        </View>
-    )
+        <Text style={styles.bigText}>Avisos</Text>
+
+        <TouchableOpacity style={styles.TouchableOpacity}
+            onPress={() => props.navigation.navigate("Home")}><Text>Voltar</Text></TouchableOpacity>
+
+        <FlatList
+            data={avisos}
+            renderItem={
+                ({ item }) =>
+                    <View style={{ backgroundColor: "white", width: "300px", borderRadius: "10px", border: "none", marginBottom: "10px" }}>
+                        <Text style={styles.Aviso}>Aviso: {item.aviso} </Text>
+                        <Text style={styles.Info}>Horario: {item.horario}</Text>
+                        <Text style={styles.Info}>Informações: {item.informacoes}</Text>
+                        <Text style={styles.Info}>data: {item.data}</Text>
+                        <Text style={styles.Info}>data de emissão do aviso: {item.dataAviso}</Text>
+
+                        {utils.isAdm == "true" ?
+                            <TouchableOpacity style={styles.TouchableOpacity3}
+                                onPress={() => deleteFromLista(item.id)}><Text>Excluir</Text></TouchableOpacity>
+                            : null}
+                    </View>
+            }
+            keyExtractor={(item) => item.id}
+        >
+        </FlatList>
+
+
+
+    </View>
+)
 }
 
 const styles = StyleSheet.create({
@@ -97,14 +116,27 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         marginBottom: "20px"
     },
+    TouchableOpacity3: {
+        width: "100px",
+        height: "30px",
+        margin: "10px",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "10px",
+        fontFamily: "Arial",
+        marginTop: "30px",
+        backgroundColor: "red",
+        marginBottom: "20px",
+        color: "85292e"
+    },
     Info: {
-        marginBottom: "5px", 
+        marginBottom: "5px",
         marginLeft: "5px"
     },
     Aviso: {
         fontSize: "18px",
         fontWeight: "bold",
-        marginBottom: "5px", 
+        marginBottom: "5px",
         marginLeft: "5px"
     }
 });

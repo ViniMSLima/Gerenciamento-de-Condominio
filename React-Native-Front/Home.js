@@ -51,6 +51,10 @@ export default function Home(props) {
         props.navigation.navigate('Churras');
     }
     
+    function logout() {
+        props.navigation.navigate('Login');
+    }
+
     return (
         <View style={styles.container}>
 
@@ -72,17 +76,17 @@ export default function Home(props) {
                     ]}
                     onPress={() => goToPagamentoCondominio()}
                 >
-                    <Text style={styles.HomeOptinsText}>Gerar boleto de pagamento</Text>
+                    <Text style={styles.HomeOptinsText}>Pagamento</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.body}>
                 <TouchableOpacity
                     style={[
-                        styles.HomeOptions, { backgroundColor: "#d41d08" }
+                        styles.HomeOptions, { backgroundColor: "#ed0202" }
                     ]}
                     onPress={() => goToAvisos()}
                 >
-                    <Text style={styles.HomeOptinsText}>Central de Avisos</Text>
+                    <Text style={styles.HomeOptinsText}>Avisos</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[
@@ -131,7 +135,7 @@ export default function Home(props) {
                     ]}
                     onPress={() => goToAgendamentoLixo()}
                 >
-                    <Text style={styles.HomeOptinsText}>Agendamento da coleta de lixo</Text>
+                    <Text style={styles.HomeOptinsText}>Agendar coleta de lixo</Text>
                 </TouchableOpacity>
 
             </View> 
@@ -156,11 +160,20 @@ export default function Home(props) {
                 </View>  
             </View>             
                 
-                : ""}
+                : null}
 
 
             <Text style={styles.userInfo}>User: {utils.name}</Text>
             <Text style={styles.userInfo}>Email: {utils.email}</Text>
+
+            <TouchableOpacity
+                    style={[
+                        styles.HomeOptions2, { backgroundColor: "white" }
+                    ]}
+                    onPress={() => logout()}
+                >
+                    <Text style={styles.HomeOptinsText2}>Logout</Text>
+                </TouchableOpacity>
         </View>
     )
 }
@@ -213,9 +226,27 @@ const styles = StyleSheet.create({
         margin: '10px'
 
     },
+    HomeOptions2: {
+        width: "150px",
+        height: "70px",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "10px",
+        fontFamily: "Arial",
+        marginTop: "30px",
+        margin: '10px'
+
+    },
     HomeOptinsText:
     {
         color: "white",
+        textAlign: "center",
+        fontSize: "18px",
+        fontWeight: "bold"
+    },
+    HomeOptinsText2:
+    {
+        color: "black",
         textAlign: "center",
         fontSize: "18px",
         fontWeight: "bold"

@@ -1,5 +1,5 @@
-import { Text, TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
-import { useState, useContext } from 'react';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import { useState, useContext, useEffect } from 'react';
 import { UtilsContext } from './Context';
 import axios from 'axios';
 
@@ -7,9 +7,10 @@ import axios from 'axios';
 export default function AluguelChurras(props) {
     const { utils, setUtils } = useContext(UtilsContext);
 
-    const [numero, setNumero] = useState("");
     const [data, setData] = useState("");
     const [email, setEmail] = useState("");
+    const [lista, setLista] = useState([]);
+    const [numero, setNumero] = useState("");
 
     async function Churras() {
 
@@ -27,6 +28,22 @@ export default function AluguelChurras(props) {
 
         props.navigation.navigate('Home');
     }
+
+    async function getLista() {
+
+
+        try {
+            const response = await axios.get("http://localhost:8080/churras", {
+            });
+            setLista(response.data)
+        } catch (error) {
+            console.error('Erro ao enviar o user:', error);
+        }
+    }
+
+    useEffect(() => {
+        getLista();
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -49,12 +66,29 @@ export default function AluguelChurras(props) {
                 </View>
             </View>
 
-            <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "white", color: "black"}]}
+            <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "white", color: "black" }]}
                 onPress={() => Churras()}><Text>Alugar</Text></TouchableOpacity>
 
             <TouchableOpacity style={[styles.TouchableOpacity, { backgroundColor: "lightgrey", color: "white" }]}
                 onPress={() => props.navigation.navigate("Home")}><Text>Cancelar</Text></TouchableOpacity>
 
+            {utils.isAdm == "true" ?
+                <FlatList
+                    data={lista}
+                    renderItem={
+                        ({ item }) =>
+                            <View style={{ backgroundColor: "white", width: "300px", borderRadius: "10px", border: "none", marginBottom: "10px" }}>
+                                <Text style={styles.Aviso}>Churrasqueira: {item.numero} </Text>
+                                <Text style={styles.Info}>data: {item.data}</Text>
+                                <Text style={styles.Info}>email: {item.email}</Text>
+                                <TouchableOpacity style={styles.TouchableOpacity3}
+                                    onPress={() => deleteFromLista(0, item.id)}>Excluir</TouchableOpacity>
+                            </View>
+                    }
+                    keyExtractor={(item) => item.id}
+                >
+                </FlatList>
+                : null}
         </View>
     )
 
@@ -104,6 +138,64 @@ const styles = StyleSheet.create({
         borderRadius: "10px",
         fontFamily: "Arial",
         marginTop: "30px"
+    },
+    smallText: {
+        alignContent: "flex-start",
+        width: "300px"
+    },
+    bigText: {
+        fontSize: "42px",
+        marginBottom: "50px"
+    },
+    TouchableOpacity: {
+        width: "200px",
+        height: "30px",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "10px",
+        fontFamily: "Arial",
+        marginTop: "30px",
+        backgroundColor: "white",
+        marginBottom: "20px"
+    },
+    TouchableOpacity2: {
+        width: "100px",
+        height: "30px",
+        margin: "10px",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "10px",
+        fontFamily: "Arial",
+        marginTop: "30px",
+        backgroundColor: "white",
+        marginBottom: "20px"
+    },
+    TouchableOpacity3: {
+        width: "100px",
+        height: "30px",
+        margin: "10px",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "10px",
+        fontFamily: "Arial",
+        marginTop: "30px",
+        backgroundColor: "red",
+        marginBottom: "20px",
+        color: "85292e"
+    },
+    Info: {
+        marginBottom: "5px",
+        marginLeft: "5px"
+    },
+    Aviso: {
+        fontSize: "18px",
+        fontWeight: "bold",
+        marginBottom: "5px",
+        marginLeft: "5px"
+    },
+    buttons: {
+        display: "flex",
+        flexDirection: "row"
     }
 
 });

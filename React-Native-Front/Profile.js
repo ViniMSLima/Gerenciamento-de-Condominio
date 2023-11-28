@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity, TextInput, Alert } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { UtilsContext } from './Context';
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
@@ -53,7 +53,8 @@ export default function Profile(props) {
                 "password": password,
                 "isAdm": isAdm
             });
-            console.log("response put", response)
+            console.log("response put", response);
+            props.navigation.navigate("Login");
         }
     }
 
@@ -70,10 +71,6 @@ export default function Profile(props) {
 
             <Text style={styles.smallText}>User</Text>
             <TextInput style={styles.inputs} value={name} onChangeText={text => setName(text)}
-            ></TextInput>
-
-            <Text style={styles.smallText}>CPF</Text>
-            <TextInput style={styles.inputs} value={cpf} onChangeText={text => setCpf(text)}
             ></TextInput>
 
             <Text style={styles.smallText}>Email</Text>

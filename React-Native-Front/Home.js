@@ -86,7 +86,7 @@ export default function Home(props) {
                     ]}
                     onPress={() => goToAvisos()}
                 >
-                    <Text style={styles.HomeOptinsText}>Avisos</Text>
+                    <Text style={styles.HomeOptinsText}>Avisos e Reclamações</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[
@@ -135,7 +135,7 @@ export default function Home(props) {
                     ]}
                     onPress={() => goToAgendamentoLixo()}
                 >
-                    <Text style={styles.HomeOptinsText}>Agendar coleta de lixo</Text>
+                    <Text style={styles.HomeOptinsText}>Agendamentos</Text>
                 </TouchableOpacity>
 
             </View> 

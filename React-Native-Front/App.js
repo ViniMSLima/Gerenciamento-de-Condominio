@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import Login from './Login';
+ import Login from './Login';
 import Cadastro from './Cadastro';
 import Usuarios from './Usuarios';
 import Home from './Home';
@@ -27,7 +27,7 @@ export default function App() {
       <UtilsContext.Provider value={{ utils, setUtils }}>
         <Stack.Navigator>
           <Stack.Screen name = "Login" options={{ headerShown: false, title: 'Login'}} component = { Login } />
-          <Stack.Screen name = "Cadastro" options={{ headerShown: false}} component = { Cadastro }/>
+           <Stack.Screen name = "Cadastro" options={{ headerShown: false}} component = { Cadastro }/>
           <Stack.Screen name = "CadastroApe" options={{ headerShown: false}} component = { CadastroApe }/>
           <Stack.Screen name = "PagamentoCondominio" options={{ headerShown: false}} component = { PagamentoCondominio }/>
           <Stack.Screen name = "AgendamentoLixo" options={{ headerShown: false}} component = { AgendamentoLixo }/>
@@ -38,7 +38,7 @@ export default function App() {
           <Stack.Screen name = "Churras" options={{ headerShown: false}} component = { Churras }/>
           <Stack.Screen name = "Home" options={{ headerShown: false, title: 'Home'}} component = { Home }/>
           <Stack.Screen name = "Profile" options={{ headerShown: false, title: 'Profile'}} component = { Profile } />
-          <Stack.Screen name = "Usuarios" component = { Usuarios }/>
+          <Stack.Screen name = "Usuarios" component = { Usuarios }/> 
         </Stack.Navigator>
       </UtilsContext.Provider>
     </NavigationContainer>

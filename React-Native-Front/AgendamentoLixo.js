@@ -60,7 +60,7 @@ export default function AgendamentoLixo(props) {
                 <TouchableOpacity style={styles.TouchableOpacity2}
                     onPress={() => setBooleano(false)}><Text>Lixo</Text></TouchableOpacity>
                 <TouchableOpacity style={styles.TouchableOpacity2}
-                    onPress={() => setBooleano(true)}><Text>Assembleia</Text></TouchableOpacity>
+                    onPress={() => setBooleano(true)}><Text>Assembléia</Text></TouchableOpacity>
             </View>
 
             {booleano == 0 ?
@@ -84,7 +84,7 @@ export default function AgendamentoLixo(props) {
                 </View>
                 :
                 <View style={styles.align}>
-                    <Text style={styles.bigText}>Agendamento de assembleia</Text>
+                    <Text style={styles.bigText}>Agendamento de assembléia</Text>
 
                     <Text style={styles.smallText}>Data</Text>
                     <TextInput style={styles.inputs} onChangeText={text => setData(text)}

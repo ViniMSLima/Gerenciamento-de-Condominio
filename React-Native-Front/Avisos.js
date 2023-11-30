@@ -35,7 +35,7 @@ export default function Avisos(props) {
                 "horario": item.horario,
                 "resolvido": a
             });
-            emitirAvisoResolvido(item.problema, item.data);
+            emitirAvisoResolvido(item.problema, item.data, a);
             getReclamacoes();
         } catch (error) {
             console.error('Erro ao enviar o user:', error);
@@ -43,22 +43,24 @@ export default function Avisos(props) {
 
     }
 
-    async function emitirAvisoResolvido(problema1, data1) {
+    async function emitirAvisoResolvido(problema1, data1, a) {
 
-        try {
-            const response = await axios.post("http://localhost:8080/info", {
-                "aviso": "Problema resolvido",
-                "data": data1,
-                "informacoes": problema1,
-                "dataAviso": dataFormatada.toString(),
-                "horario": "00:00"
-            });
+        if (a == true)
+        {
 
-        } catch (error) {
-            console.error('Erro ao enviar o user:', error);
-        }
-
-        props.navigation.navigate('Home');
+            try {
+                const response = await axios.post("http://localhost:8080/info", {
+                    "aviso": "Problema resolvido",
+                    "data": data1,
+                    "informacoes": problema1,
+                    "dataAviso": dataFormatada.toString(),
+                    "horario": "00:00"
+                });
+                
+            } catch (error) {
+                console.error('Erro ao enviar o user:', error);
+            }
+        }   
     }
 
     async function getAvisos() {
@@ -143,7 +145,7 @@ export default function Avisos(props) {
                 <TouchableOpacity style={styles.TouchableOpacity2}
                     onPress={() => setBooleano(false)}><Text>Avisos</Text></TouchableOpacity>
                 <TouchableOpacity style={styles.TouchableOpacity2}
-                    onPress={() => setBooleano(true)}><Text>Reclamacao</Text></TouchableOpacity>
+                    onPress={() => setBooleano(true)}><Text>Reclamações</Text></TouchableOpacity>
             </View>
 
             {booleano == 0 ?
@@ -174,7 +176,7 @@ export default function Avisos(props) {
                 </View>
                 :
                 <View style={styles.align}>
-                    <Text style={styles.bigText}>Reclamação</Text>
+                    <Text style={styles.bigText}>Reclamações</Text>
 
                     <Text style={styles.smallText}>Problema</Text>
                     <TextInput style={styles.inputs} onChangeText={text => setProblema(text)}
